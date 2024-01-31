@@ -8,7 +8,6 @@ namespace FishingRogue
 {
     class Movement : Component
     {
-
         public Movement() 
         {
             MovementSystem.Register(this);

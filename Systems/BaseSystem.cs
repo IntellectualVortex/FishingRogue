@@ -15,7 +15,7 @@ namespace FishingRogue
 
 
         // Only 
-        public void Register(T component)
+        public static void Register(T component)
         {
             components.Add(component);
         }
