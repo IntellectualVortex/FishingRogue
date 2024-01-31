@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    public class Sprite : Component
+    class Sprite : Component
     {
         public Sprite()
         {

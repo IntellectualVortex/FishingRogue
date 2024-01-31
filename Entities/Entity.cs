@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    public class Entity
+    class Entity
     {
         Guid id = Guid.NewGuid();
 
@@ -21,7 +21,7 @@ namespace FishingRogue
         
         public T GetComponent<T>() where T : Component
         {
-            foreach (var component in components)
+            foreach (Component component in components)
             {
                 if (component.GetType() == typeof(T))
                 {

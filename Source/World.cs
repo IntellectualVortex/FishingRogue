@@ -25,8 +25,9 @@ namespace FishingRogue
         }
 
         public void Update(GameTime gameTime) 
-        { 
-
+        {
+            SpriteSystem.Update();
+            MovementSystem.Update();
         }    
 
     }

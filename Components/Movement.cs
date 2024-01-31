@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    public class Movement : Component
+    class Movement : Component
     {
 
         public Movement() 

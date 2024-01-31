@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    public class BaseSystem<T> where T : Component
+    class BaseSystem<T> where T : Component
     {
 
         // Components list accessible anywhere
-        static List<T> components = new List<T>();
+        public static List<T> components = new List<T>();
 
 
         // Only 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    public class Component
+    class Component
     {
         public Entity entity;
 
