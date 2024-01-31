@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    class Movement : Component
+    struct Position
     {
-        public Movement() 
-        {
-            MovementSystem.Register(this);
-        }   
+        Vector2 Pos {  get; set; }
     }
 }

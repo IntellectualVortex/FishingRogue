@@ -27,6 +27,7 @@ namespace FishingRogue
 
         protected override void LoadContent()
         {
+            Globals.content = this.Content;
             Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
             world = new World();
         }

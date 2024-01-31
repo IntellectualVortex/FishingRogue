@@ -29,7 +29,4 @@ namespace FishingRogue
             }
         }
     }
-
-    class SpriteSystem : BaseSystem<Sprite> { }
-    class MovementSystem : BaseSystem<Movement> { }
 }
