@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    public class Component
+    public class Sprite : Component
     {
-        public Entity entity;
-
-        public virtual void Update()
+        public Sprite()
         {
+            SpriteSystem.Register(this);
         }
     }
-
-
 }
