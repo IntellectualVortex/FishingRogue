@@ -28,9 +28,7 @@ namespace FishingRogue
         protected override void LoadContent()
         {
             Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            World world = new World();
-            
+            world = new World();
         }
 
         protected override void Update(GameTime gameTime)
@@ -40,7 +38,6 @@ namespace FishingRogue
 
             // TODO: Add your update logic here
             world.Update(gameTime);
-            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -50,8 +47,6 @@ namespace FishingRogue
             world.Draw();
 
             Globals.spriteBatch.End();
-
-            base.Draw(gameTime);
         }
     }
 }

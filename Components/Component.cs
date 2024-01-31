@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    internal class Component
+    public class Component
     {
+
+
     }
 }

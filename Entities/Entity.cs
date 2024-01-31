@@ -11,8 +11,25 @@ namespace FishingRogue
     {
         Guid id = Guid.NewGuid();
 
-        public Entity() 
+        List<Component> components = new List<Component>(); 
+
+        public Entity()
         {
             Debug.WriteLine(id);
-        } 
+        }
+
+        
+        public T GetComponent<T>() where T : Component
+        {
+            foreach (var component in components)
+            {
+                if (component.GetType() == typeof(T))
+                {
+                    return (T)component;
+                }
+            }
+            return null;
+        }
+
     }
+}

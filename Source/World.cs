@@ -10,6 +10,15 @@ namespace FishingRogue
     public class World
     {
 
+        public World() 
+        {
+
+        }
+
+
+
+
+
         public void Draw()
         {
 
