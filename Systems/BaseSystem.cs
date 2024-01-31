@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    public class BaseSystem<T>
+    public class BaseSystem<T> where T : Component
     {
 
         // Components list accessible anywhere
