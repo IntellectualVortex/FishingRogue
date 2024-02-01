@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace FishingRogue
 {
-    class RenderSystem
+    class RenderSystem 
     {
         public RenderSystem() 
         {
