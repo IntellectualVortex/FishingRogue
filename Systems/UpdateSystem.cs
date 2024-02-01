@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 namespace FishingRogue
 {
     class UpdateSystem
-    {
-
-        World world;
-
-        public void Update()
+    {  
+        public void Update(World world)
         {
             foreach (Entity entity in world.entities)
             {

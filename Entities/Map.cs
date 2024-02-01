@@ -13,11 +13,13 @@ namespace FishingRogue
         {
             Sprite sprite = new Sprite();
             Position position = new Position();
+            Render render = new Render();
 
             sprite.texture = tex;
 
             AddComponent(sprite);
             AddComponent(position);
+            AddComponent(render);
         }
     }
 }

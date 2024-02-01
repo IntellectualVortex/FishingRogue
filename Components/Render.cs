@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace FishingRogue
 {
-    class Render
+    class Render : Component
     {
         // Create more usable simple function
         public void SimpleDraw(Texture2D tex, Vector2 pos, float layer)
