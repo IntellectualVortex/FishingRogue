@@ -15,26 +15,26 @@ namespace FishingRogue
     {
         Player player;
         RenderSystem renderSystem;
+        PlayerMoveSystem moveSystem;
 
         public World()
         {
             player = new Player(Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"));
             renderSystem = new RenderSystem();
+            moveSystem = new PlayerMoveSystem();
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gametime)
         {
-            MovePlayer();
+            moveSystem.GetVelocity(player);
+            //playerPosition.Pos += new Vector2(1, 1);
         }
 
         public void Draw()
         {
             Sprite playerSprite = player.GetComponent<Sprite>();
-            renderSystem.SimpleDraw(playerSprite.texture);
-        }
-
-        public void MovePlayer()
-        {
+            Position playerPosition = player.GetComponent<Position>();
+            renderSystem.SimpleDraw(playerSprite.texture, playerPosition.Pos);
         }
     }
 }

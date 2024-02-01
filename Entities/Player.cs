@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,9 +18,15 @@ namespace FishingRogue
             Position position = new Position();
 
             sprite.texture = tex;
+
             AddComponent(sprite);
             AddComponent(position);
             AddComponent(velocity);
+        }
+
+        public Player()
+        {
+
         }
     }
 }
