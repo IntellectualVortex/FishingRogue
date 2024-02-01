@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,8 @@ namespace FishingRogue
 
         public PlayerMovementSystem() {}
 
-        public void Move()
+        public void Move(Vector2 vel)
         {
-
 
             if (Keyboard.GetState().IsKeyDown(Keys.W) && Keyboard.GetState().IsKeyDown(Keys.S))
             {
@@ -54,7 +54,6 @@ namespace FishingRogue
             if (vel != Vector2.Zero)
             {
                 vel.Normalize();
-                vel *= speedMult;
             }
         }
     }

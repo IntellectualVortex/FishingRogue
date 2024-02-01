@@ -15,12 +15,11 @@ namespace FishingRogue
         {
         }
 
-
         // Create more usable simple function
         public void SimpleDraw(Texture2D tex)
         {
             Globals.spriteBatch.Draw(tex,
-            new Rectangle(200, 200, 500, 500),
+            new Rectangle((int)200, (int)200, 500, 500),
             null,
             Color.White,
             0, new Vector2(tex.Bounds.Width / 2, tex.Bounds.Height / 2), SpriteEffects.None, 0);

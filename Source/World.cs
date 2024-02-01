@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,29 +15,29 @@ namespace FishingRogue
     {
         Player player;
         RenderSystem renderSystem;
-        PlayerMovementSystem playerMovementSystem;
+        PlayerMovementSystem pMS;
 
         public World()
         {
             player = new Player(Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"));
             renderSystem = new RenderSystem();
-            playerMovementSystem = new PlayerMovementSystem();
+            pMS = new PlayerMovementSystem();
         }
 
         public void Update(GameTime gameTime)
         {
-            SpriteSystem.Update();
+            MovePlayer();
         }
 
         public void Draw()
         {
             Sprite playerSprite = player.GetComponent<Sprite>();
+            Position playerPosition = player.GetComponent<Position>();
             renderSystem.SimpleDraw(playerSprite.texture);
         }
 
         public void MovePlayer()
         {
-
         }
     }
 }

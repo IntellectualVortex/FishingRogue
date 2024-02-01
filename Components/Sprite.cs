@@ -18,7 +18,6 @@ namespace FishingRogue
 
         public Sprite()
         {
-            SpriteSystem.Register(this);
         }
 
         public override void Update()
