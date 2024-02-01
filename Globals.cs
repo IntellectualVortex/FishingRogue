@@ -12,6 +12,7 @@ namespace FishingRogue
         public static GraphicsDeviceManager gDM;
         public static Random random;
         public static float TotalSeconds;
+        public static SpriteEffects sE;
 
         public static float RandomFloat(float min, float max)
         {

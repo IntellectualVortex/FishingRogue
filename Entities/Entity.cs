@@ -11,7 +11,7 @@ namespace FishingRogue
     {
         Guid id = Guid.NewGuid();
 
-        List<Component> components = new List<Component>(); 
+        internal List<Component> components = new List<Component>(); 
 
         public Entity()
         {

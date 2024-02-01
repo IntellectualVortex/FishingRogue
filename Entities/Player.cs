@@ -16,12 +16,15 @@ namespace FishingRogue
             Sprite sprite = new Sprite();
             Velocity velocity = new Velocity();
             Position position = new Position();
+            Render render = new Render();
 
             sprite.texture = tex;
 
             AddComponent(sprite);
             AddComponent(position);
             AddComponent(velocity);
+            AddComponent(render);
+            
         }
 
         public Player()

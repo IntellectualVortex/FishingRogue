@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,10 +14,15 @@ namespace FishingRogue
 {
     public class World
     {
+
+        internal List<Entity> entities = new List<Entity>();
+
         Player player;
         RenderSystem renderSystem;
         PlayerMoveSystem moveSystem;
         Map map;
+
+        
 
         public World()
         {
@@ -24,11 +30,67 @@ namespace FishingRogue
             map = new Map(Globals.content.Load<Texture2D>("PlayerAssets\\Tex"));
             renderSystem = new RenderSystem();
             moveSystem = new PlayerMoveSystem();
+
+
+            AddEntity(player);
+            AddEntity(map);
+        }
+
+        void AddEntity(Entity entity) 
+        {
+            entities.Add(entity);
         }
 
         public void Update(GameTime gametime)
         {
-            moveSystem.GetVelocity(player);
+            Position playerPosition = player.GetComponent<Position>();
+            Velocity playerVelocity = player.GetComponent<Velocity>();
+            var vel = playerVelocity.Vel;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.W) && Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                vel += new Vector2(0, 0);
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                vel += new Vector2(0, -1);
+
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                vel += new Vector2(0, 1);
+            }
+            else
+            {
+                vel += new Vector2(0, 0);
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.A) && Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                vel += new Vector2(0, 0);
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                vel += new Vector2(1, 0);
+
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                vel += new Vector2(-1, 0);
+
+            }
+            else
+            {
+                vel += new Vector2(0, 0);
+            }
+
+            if (vel != Vector2.Zero)
+            {
+                vel.Normalize();
+                vel *= playerVelocity.speedMult;
+            }
+
+            playerPosition.Pos += vel;
         }
 
         public void Draw()
