@@ -9,7 +9,15 @@ namespace FishingRogue
 {
     class Velocity : Component
     {
+        public Velocity(Entity entity) : base(entity)
+        {
+        }
+
         public float speedMult { get; set; } = 1f;
         public Vector2 Vel { get; set; }
+
+        public override void Update()
+        {
+        }
     }
 }

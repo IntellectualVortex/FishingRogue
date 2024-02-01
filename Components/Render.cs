@@ -10,6 +10,10 @@ namespace FishingRogue
 {
     class Render : Component
     {
+        public Render(Entity entity) : base(entity)
+        {
+        }
+
         // Create more usable simple function
         public void SimpleDraw(Texture2D tex, Vector2 pos, float layer)
         {
@@ -35,6 +39,10 @@ namespace FishingRogue
             new Rectangle((int)pos.X, (int)pos.Y, (int)dims.X, (int)dims.Y), null,
             color,
             rot, origin, spriteEffects, layer);
+        }
+
+        public override void Update()
+        {
         }
     }
 }

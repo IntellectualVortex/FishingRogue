@@ -22,15 +22,13 @@ namespace FishingRogue
         Player player;
         Map map;
         Render render;
-        Move move;
         
 
         public World()
         {
             player = new Player(Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"));
             map = new Map(Globals.content.Load<Texture2D>("PlayerAssets\\Tex"));
-            render = new Render();
-            move = new Move();
+            render = new Render(player);
 
             AddEntity(player);
             AddEntity(map);
@@ -42,10 +40,8 @@ namespace FishingRogue
         }
 
 
-
         public void Update(GameTime gametime)
         {
-            move.Update(player);
             updateSystem.Update(this);
         }
 
@@ -57,7 +53,6 @@ namespace FishingRogue
 
             Sprite mapSprite = map.GetComponent<Sprite>();
             Position mapPosition = map.GetComponent<Position>();
-
 
             render.SimpleDraw(playerSprite.texture, playerPosition.Pos, 0f);
             render.SimpleDraw(mapSprite.texture, mapPosition.Pos + new Vector2(300, 200), 1f);

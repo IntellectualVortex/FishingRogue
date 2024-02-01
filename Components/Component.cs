@@ -1,18 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FishingRogue
+﻿namespace FishingRogue
 {
-    class Component
+    abstract class Component
     {
         public Entity entity;
 
-        public virtual void Update()
+        public Component(Entity entity)
         {
+            this.entity = entity;
         }
+
+        public abstract void Update();
     }
 }

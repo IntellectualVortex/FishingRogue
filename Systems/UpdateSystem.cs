@@ -9,6 +9,7 @@ namespace FishingRogue
 {
     class UpdateSystem
     {  
+
         public void Update(World world)
         {
             foreach (Entity entity in world.entities)

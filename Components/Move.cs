@@ -1,19 +1,18 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FishingRogue
 {
     class Move : Component //: IWASDMovable?
     {
-        public void Update(Player player)
+        public Move(Entity entity) : base(entity)
         {
-            Position playerPosition = player.GetComponent<Position>();
-            Velocity playerVelocity = player.GetComponent<Velocity>();
+        }
+
+        public override void Update()
+        {
+            Position playerPosition = entity.GetComponent<Position>();
+            Velocity playerVelocity = entity.GetComponent<Velocity>();
             var vel = playerVelocity.Vel;
 
             if (Keyboard.GetState().IsKeyDown(Keys.W) && Keyboard.GetState().IsKeyDown(Keys.S))
