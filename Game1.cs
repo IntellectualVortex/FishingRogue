@@ -45,7 +45,7 @@ namespace FishingRogue
         {
             GraphicsDevice.Clear(Color.Black);
 
-            Globals.spriteBatch.Begin(SpriteSortMode.Deferred, blendState: BlendState.AlphaBlend, null);
+            Globals.spriteBatch.Begin(SpriteSortMode.BackToFront, blendState: BlendState.AlphaBlend, null);
 
             world.Draw();
 
