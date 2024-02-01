@@ -27,7 +27,6 @@ namespace FishingRogue
         public void Update(GameTime gametime)
         {
             moveSystem.GetVelocity(player);
-            //playerPosition.Pos += new Vector2(1, 1);
         }
 
         public void Draw()
