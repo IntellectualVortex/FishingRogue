@@ -14,6 +14,9 @@ namespace FishingRogue
         public RenderSystem() 
         {
         }
+
+
+        // Create more usable simple function
         public void SimpleDraw(Texture2D tex)
         {
             Globals.spriteBatch.Draw(tex,
@@ -21,6 +24,11 @@ namespace FishingRogue
             null,
             Color.White,
             0, new Vector2(tex.Bounds.Width / 2, tex.Bounds.Height / 2), SpriteEffects.None, 0);
+        }
+
+        public void CustomDraw(Texture2D tex)
+        {
+            // Add dynamic parameters for XNA draw effects
         }
     }
 }

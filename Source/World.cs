@@ -14,11 +14,13 @@ namespace FishingRogue
     {
         Player player;
         RenderSystem renderSystem;
+        PlayerMovementSystem playerMovementSystem;
 
         public World()
         {
             player = new Player(Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"));
             renderSystem = new RenderSystem();
+            playerMovementSystem = new PlayerMovementSystem();
         }
 
         public void Update(GameTime gameTime)
@@ -30,6 +32,11 @@ namespace FishingRogue
         {
             Sprite playerSprite = player.GetComponent<Sprite>();
             renderSystem.SimpleDraw(playerSprite.texture);
+        }
+
+        public void MovePlayer()
+        {
+
         }
     }
 }

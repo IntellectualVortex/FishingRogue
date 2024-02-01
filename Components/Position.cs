@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    struct Position
+    class Position : Component
     {
-        Vector2 Pos {  get; set; }
+        public Vector2 Pos {  get; set; }
     }
 }

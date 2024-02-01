@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    class PlayerMovementSystem
+    class PlayerMovementSystem 
     {
-        public PlayerMovementSystem() { }
+
+        public PlayerMovementSystem() {}
 
         public void Move()
         {
@@ -56,6 +57,5 @@ namespace FishingRogue
                 vel *= speedMult;
             }
         }
-
     }
 }

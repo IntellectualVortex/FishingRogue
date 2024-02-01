@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    struct Velocity
+    class Velocity : Component
     {
-        public float Vel { get; set; }
+        float Vel { get; set; }
     }
 }
