@@ -5,9 +5,6 @@ namespace FishingRogue
 {
     class Move : Component //: IWASDMovable?
     {
-        public Move(Entity entity) : base(entity)
-        {
-        }
 
         public override void Update()
         {

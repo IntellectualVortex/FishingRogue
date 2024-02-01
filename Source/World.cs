@@ -28,7 +28,7 @@ namespace FishingRogue
         {
             player = new Player(Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"));
             map = new Map(Globals.content.Load<Texture2D>("PlayerAssets\\Tex"));
-            render = new Render(player);
+            render = new Render();
 
             AddEntity(player);
             AddEntity(map);
