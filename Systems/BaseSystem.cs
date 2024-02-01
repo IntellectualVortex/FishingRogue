@@ -10,16 +10,13 @@ namespace FishingRogue
     class BaseSystem<T> where T : Component
     {
 
-        // Components list accessible anywhere
         public static List<T> components = new List<T>();
 
 
-        // Only 
         public static void Register(T component)
         {
             components.Add(component);
         }
-
 
         public static void Update()
         {
