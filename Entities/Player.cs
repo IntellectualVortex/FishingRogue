@@ -11,7 +11,8 @@ namespace FishingRogue
 { 
     class Player : Entity
     {
-        Vector2 initialPosition = new Vector2(0, 0);
+        Vector2 initialPosition = new Vector2(Globals.gDM.PreferredBackBufferWidth / 2,
+                    Globals.gDM.PreferredBackBufferHeight / 2);
 
         public Player()
         {
