@@ -21,7 +21,7 @@ namespace FishingRogue
             Pos = pos;
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
         }
     }

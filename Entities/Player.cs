@@ -11,27 +11,21 @@ namespace FishingRogue
 { 
     class Player : Entity
     {
-        public Player(Texture2D tex)
-        {
-            Sprite sprite = new Sprite(this);
-            Velocity velocity = new Velocity(this);
-            Position position = new Position(this);
-            Render render = new Render(this);
-            Move move = new Move(this);
-
-            sprite.Texture = tex;
-
-            
-            AddComponent(sprite);
-            AddComponent(position);
-            AddComponent(velocity);
-            AddComponent(render);
-            AddComponent(move);
-        }
+        Vector2 initialPosition = new Vector2(0, 0);
 
         public Player()
         {
+            Sprite sprite = new Sprite(this);
+            Velocity velocity = new Velocity(this);
+            Position position = new Position(this, initialPosition);
+            Move move = new Move(this);
 
+            sprite.Texture = Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman");
+
+            AddComponent(position);
+            AddComponent(velocity);
+            AddComponent(move);
+            AddComponent(sprite);
         }
     }
 }

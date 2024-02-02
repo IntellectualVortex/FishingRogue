@@ -6,7 +6,8 @@ namespace FishingRogue
 {
     public class Game1 : Game
     {
-        World world;
+        World1 world;
+        UpdateSystem updateSystem;
 
         public Game1()
         {
@@ -29,7 +30,8 @@ namespace FishingRogue
         {
             Globals.content = this.Content;
             Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
-            world = new World();
+            world = new World1();
+            updateSystem = new UpdateSystem(world);
         }
 
         protected override void Update(GameTime gameTime)
@@ -38,17 +40,10 @@ namespace FishingRogue
                 Exit();
 
             // TODO: Add your update logic here
-            world.Update(gameTime);
-        }
-
-        protected override void Draw(GameTime gameTime)
-        {
             GraphicsDevice.Clear(Color.Black);
 
-            Globals.spriteBatch.Begin(SpriteSortMode.BackToFront, blendState: BlendState.AlphaBlend, null);
-
-            world.Draw();
-
+            Globals.spriteBatch.Begin(SpriteSortMode.Deferred, blendState: BlendState.AlphaBlend, null);
+            updateSystem.Update(gameTime);
             Globals.spriteBatch.End();
         }
     }

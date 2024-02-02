@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,18 @@ namespace FishingRogue
 {
     internal class Map : Entity
     {
-        public Map(Texture2D tex)
+        Vector2 initialPosition = new Vector2(300, 200);
+
+        public Map()
         {
             Sprite sprite = new Sprite(this);
-            Position position = new Position(this);
-            Render render = new Render(this);
+            Position position = new Position(this, initialPosition);
 
-            sprite.Texture = tex;
 
-            AddComponent(sprite);
+            sprite.Texture = Globals.content.Load<Texture2D>("PlayerAssets\\Tex");
+
             AddComponent(position);
-            AddComponent(render);
+            AddComponent(sprite);
         }
     }
 }

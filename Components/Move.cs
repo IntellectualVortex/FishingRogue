@@ -5,11 +5,12 @@ namespace FishingRogue
 {
     class Move : Component //: IWASDMovable?
     {
+
         public Move(Entity entity) : base(entity)
         {
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             Position playerPosition = entity.GetComponent<Position>();
             Velocity playerVelocity = entity.GetComponent<Velocity>();
