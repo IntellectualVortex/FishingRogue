@@ -11,6 +11,8 @@ namespace FishingRogue
     {
         public Texture2D Texture { get; set; }
 
+        Player player;
+
         public Sprite(Entity entity, Texture2D texture) : base(entity)
         {
             Texture = texture;
