@@ -23,8 +23,9 @@ namespace FishingRogue
         }
         public void SimpleDraw(Texture2D tex, Vector2 pos)
         {
+            var rectangle = WorldSpaceToCameraSpace();
             Globals.spriteBatch.Draw(tex,
-            new Rectangle((int)pos.X, (int)pos.Y, 200, 200),
+            rectangle,
             null,
             Color.White,
             0, new Vector2(tex.Bounds.Width / 2, tex.Bounds.Height / 2), Globals.sE, 0f);
@@ -50,9 +51,10 @@ namespace FishingRogue
         public Rectangle WorldSpaceToCameraSpace()
         {
             Position entityPosition = entity.GetComponent<Position>();
+            Position playerPosition = player.GetComponent<Position>();  
 
-            var x_1 = entityPosition.Pos.X - pos.X + Globals.gDM.PreferredBackBufferWidth / 2;
-            var y_1 = entityPosition.Pos.Y - pos.Y + Globals.gDM.PreferredBackBufferHeight / 2;
+            var x_1 = entityPosition.Pos.X - playerPosition.Pos.X + Globals.gDM.PreferredBackBufferWidth / 2;
+            var y_1 = entityPosition.Pos.Y - playerPosition.Pos.Y + Globals.gDM.PreferredBackBufferHeight / 2;
             return new Rectangle((int)x_1, (int)y_1, 100, 100);
         }
 
