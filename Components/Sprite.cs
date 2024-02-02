@@ -45,6 +45,15 @@ namespace FishingRogue
             rot, origin, spriteEffects, 0f);
         }
 
+        public Rectangle WorldSpaceToCameraSpace()
+        {
+            Position entityPosition = entity.GetComponent<Position>();
+
+            var x_1 = entityPosition.Pos.X - pos.X + Globals.gDM.PreferredBackBufferWidth / 2;
+            var y_1 = entityPosition.Pos.Y - pos.Y + Globals.gDM.PreferredBackBufferHeight / 2;
+            return new Rectangle((int)x_1, (int)y_1, 100, 100);
+        }
+
         public override void Update(GameTime gameTime)
         {
             Sprite entitySprite = entity.GetComponent<Sprite>();
