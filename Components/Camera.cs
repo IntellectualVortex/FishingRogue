@@ -19,9 +19,6 @@ namespace FishingRogue
         {
         }
 
-        public Camera(Entity entity) : base(entity)
-        {
-        }
 
         // Update above functions after testing
         public Rectangle WorldSpaceToCameraSpace()
