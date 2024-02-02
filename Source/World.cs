@@ -28,7 +28,7 @@ namespace FishingRogue
         {
             player = new Player(Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"));
             map = new Map(Globals.content.Load<Texture2D>("PlayerAssets\\Tex"));
-            render = new Render();
+            render = new Render(player);
 
             AddEntity(player);
             AddEntity(map);
@@ -54,8 +54,8 @@ namespace FishingRogue
             Sprite mapSprite = map.GetComponent<Sprite>();
             Position mapPosition = map.GetComponent<Position>();
 
-            render.SimpleDraw(playerSprite.texture, playerPosition.Pos, 0f);
-            render.SimpleDraw(mapSprite.texture, mapPosition.Pos + new Vector2(300, 200), 1f);
+            render.SimpleDraw(playerSprite.Texture, playerPosition.Pos, 0f);
+            render.SimpleDraw(mapSprite.Texture, mapPosition.Pos + new Vector2(300, 200), 1f);
         }
     }
 }

@@ -10,6 +10,9 @@ namespace FishingRogue
 {
     class Render : Component
     {
+        public Render(Entity entity) : base(entity)
+        {
+        }
 
         // Create more usable simple function
         public void SimpleDraw(Texture2D tex, Vector2 pos, float layer)

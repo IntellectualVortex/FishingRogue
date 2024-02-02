@@ -5,6 +5,9 @@ namespace FishingRogue
 {
     class Move : Component //: IWASDMovable?
     {
+        public Move(Entity entity) : base(entity)
+        {
+        }
 
         public override void Update()
         {
@@ -49,7 +52,7 @@ namespace FishingRogue
             if (vel != Vector2.Zero)
             {
                 vel.Normalize();
-                vel *= playerVelocity.speedMult;
+                vel *= playerVelocity.SpeedMult;
             }
 
             playerPosition.Pos += vel;

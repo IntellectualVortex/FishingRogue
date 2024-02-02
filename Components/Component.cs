@@ -4,6 +4,10 @@
     {
         public Entity entity;
 
+        public Component(Entity entity)
+        {
+            this.entity = entity;
+        }
 
         public abstract void Update();
     }

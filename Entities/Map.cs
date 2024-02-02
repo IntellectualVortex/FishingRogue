@@ -11,11 +11,11 @@ namespace FishingRogue
     {
         public Map(Texture2D tex)
         {
-            Sprite sprite = new Sprite();
-            Position position = new Position();
-            Render render = new Render();
+            Sprite sprite = new Sprite(this);
+            Position position = new Position(this);
+            Render render = new Render(this);
 
-            sprite.texture = tex;
+            sprite.Texture = tex;
 
             AddComponent(sprite);
             AddComponent(position);

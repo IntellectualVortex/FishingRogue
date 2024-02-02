@@ -14,7 +14,17 @@ namespace FishingRogue
 {
     class Sprite : Component
     {
-        public Texture2D texture { get; set; }
+        public Texture2D Texture { get; set; }
+
+        public Sprite(Entity entity, Texture2D texture) : base(entity)
+        {
+            Texture = texture;
+        }
+
+        public Sprite(Entity entity) : base(entity)
+        {
+        }
+
 
         public override void Update()
         {

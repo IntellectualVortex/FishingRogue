@@ -13,13 +13,13 @@ namespace FishingRogue
     {
         public Player(Texture2D tex)
         {
-            Sprite sprite = new Sprite();
-            Velocity velocity = new Velocity();
-            Position position = new Position();
-            Render render = new Render();
-            Move move = new Move();
+            Sprite sprite = new Sprite(this);
+            Velocity velocity = new Velocity(this);
+            Position position = new Position(this);
+            Render render = new Render(this);
+            Move move = new Move(this);
 
-            sprite.texture = tex;
+            sprite.Texture = tex;
 
             
             AddComponent(sprite);
