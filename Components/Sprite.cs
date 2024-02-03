@@ -42,6 +42,8 @@ namespace FishingRogue
             0, new Vector2(tex.Bounds.Width / 2, tex.Bounds.Height / 2), SpriteEffects.None, 0f);
         }
 
+        
+
         public void FullCustomDraw(Texture2D tex, Vector2 pos, Vector2 dims, Color color, float rot, Vector2 origin, SpriteEffects spriteEffects)
         {
             Globals.spriteBatch.Draw(tex,

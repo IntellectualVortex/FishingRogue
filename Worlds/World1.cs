@@ -13,6 +13,7 @@ namespace FishingRogue
             Player player = new Player();
             entities.Add(new Map(player));
             entities.Add(player);
+            entities.Add(new FishingRod(player));
         }
     }
 }
