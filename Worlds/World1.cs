@@ -10,8 +10,9 @@ namespace FishingRogue
 
         public World1()
         {
-            entities.Add(new Map());
-            entities.Add(new Player());
+            Player player = new Player();
+            entities.Add(new Map(player));
+            entities.Add(player);
         }
     }
 }

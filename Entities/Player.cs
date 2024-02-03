@@ -11,12 +11,10 @@ namespace FishingRogue
 
         public Player()
         {
-            Sprite sprite = new Sprite(this);
+            Sprite sprite = new Sprite(this, this, Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"));
             Velocity velocity = new Velocity(this);
             Position position = new Position(this, initialPosition);
             Move move = new Move(this);
-
-            sprite.Texture = Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman");
 
             AddComponent(position);
             AddComponent(velocity);

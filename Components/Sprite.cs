@@ -11,16 +11,18 @@ namespace FishingRogue
     {
         public Texture2D Texture { get; set; }
 
-        Player player;
+        Player _player;
 
-        public Sprite(Entity entity, Texture2D texture) : base(entity)
+        public Sprite(Entity entity, Player player, Texture2D texture) : base(entity)
         {
             Texture = texture;
+            _player = player;
         }
 
         public Sprite(Entity entity) : base(entity)
         {
         }
+
         public void SimpleDraw(Texture2D tex, Vector2 pos)
         {
             var rectangle = WorldSpaceToCameraSpace();
@@ -51,7 +53,7 @@ namespace FishingRogue
         public Rectangle WorldSpaceToCameraSpace()
         {
             Position entityPosition = entity.GetComponent<Position>();
-            Position playerPosition = player.GetComponent<Position>();  
+            Position playerPosition = _player.GetComponent<Position>();
 
             var x_1 = entityPosition.Pos.X - playerPosition.Pos.X + Globals.gDM.PreferredBackBufferWidth / 2;
             var y_1 = entityPosition.Pos.Y - playerPosition.Pos.Y + Globals.gDM.PreferredBackBufferHeight / 2;
@@ -67,7 +69,7 @@ namespace FishingRogue
                 throw new NullReferenceException("You fucked up, probably forgot to add this type of component in this entites constructor");
             }
 
-
+            // Add ability to draw based of any arbitrary position, absolute position e.g. UI
             SimpleDraw(entitySprite.Texture, entityPosition.Pos);
         }
     }
