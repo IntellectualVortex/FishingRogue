@@ -14,6 +14,7 @@ namespace FishingRogue
             entities.Add(new Map(player));
             entities.Add(player);
             entities.Add(new FishingRod(player));
+            entities.Add(new FishingRodHook(player));
         }
     }
 }

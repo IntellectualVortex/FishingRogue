@@ -40,7 +40,7 @@ namespace FishingRogue
                 Exit();
 
             // TODO: Add your update logic here
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.DarkBlue);
 
             Globals.spriteBatch.Begin(SpriteSortMode.Deferred, blendState: BlendState.AlphaBlend, null);
             updateSystem.Update(gameTime);
