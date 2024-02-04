@@ -20,6 +20,7 @@ namespace FishingRogue
             AddComponent(velocity);
             AddComponent(sprite);
             AddComponent(move);
+            //youtrack test
         }
     }
 }
