@@ -11,6 +11,7 @@ namespace FishingRogue
 {
     class Sprite : Component
     {
+        Vector2 Position { get; set; }
         Texture2D Texture { get; set; } 
         int Width { get; set; }
         int Height { get; set; }
@@ -19,7 +20,7 @@ namespace FishingRogue
 
         Player _player;
 
-        public Sprite(Entity entity, Player player, Texture2D texture, Color color, float rotation = 0, int width = 100, int height = 100) : base(entity)
+        public Sprite(Entity entity, Player player, Texture2D texture, Color color, float rotation = 0, int width = 100, int height = 100, Vector2 position = default) : base(entity)
         {
             Texture = texture;
             _player = player;
@@ -27,9 +28,10 @@ namespace FishingRogue
             Height = height;
             Color = color;
             Rotation = rotation;
+            Position = position;
         }
 
-        public void ScaleDraw(Texture2D tex, Vector2 pos, int width, int height, Color color, float rot)
+        public void ScaleDraw(Texture2D tex, int _width, int _height, Color color, float rot)
         {
             var rectangle = WorldSpaceToCameraSpace();
             Globals.spriteBatch.Draw(tex,
@@ -43,6 +45,7 @@ namespace FishingRogue
         {
             Position entityPosition = entity.GetComponent<Position>();
             Position playerPosition = _player.GetComponent<Position>();
+
 
             var x_1 = entityPosition.Pos.X - playerPosition.Pos.X + Globals.gDM.PreferredBackBufferWidth / 2;
             var y_1 = entityPosition.Pos.Y - playerPosition.Pos.Y + Globals.gDM.PreferredBackBufferHeight / 2;
@@ -62,11 +65,11 @@ namespace FishingRogue
 
             if (Width != 0 & Height != 0) // default value of any built-in integral numeric type
             {
-                ScaleDraw(entitySprite.Texture, entityPosition.Pos, Width, Height, Color, Rotation);
+                ScaleDraw(entitySprite.Texture, Width, Height, Color, Rotation);
             }
             else
             {
-                ScaleDraw(entitySprite.Texture, entityPosition.Pos, Texture.Bounds.Width, Texture.Bounds.Width, Color, Rotation);
+                ScaleDraw(entitySprite.Texture, Texture.Bounds.Width, Texture.Bounds.Width, Color, Rotation); // cant create default for width, height due to constant error
             }
         }
     }
