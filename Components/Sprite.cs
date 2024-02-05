@@ -15,12 +15,12 @@ namespace FishingRogue
         Texture2D Texture { get; set; } 
         int Width { get; set; }
         int Height { get; set; }
-        Color Color { get; set; }
+        Color Color { get; set; } 
         float Rotation { get; set; }
 
         Player _player;
 
-        public Sprite(Entity entity, Player player, Texture2D texture, Color color, float rotation = 0, int width = 100, int height = 100, Vector2 position = default) : base(entity)
+        public Sprite(Entity entity, Player player, Texture2D texture, Color color, Vector2 position = default, float rotation = 0, int width = 100, int height = 100) : base(entity)
         {
             Texture = texture;
             _player = player;
@@ -44,13 +44,14 @@ namespace FishingRogue
         public Rectangle WorldSpaceToCameraSpace()
         {
             Position entityPosition = entity.GetComponent<Position>();
-            //Position playerPosition = _player.GetComponent<Position>();
+            Position playerPosition = _player.GetComponent<Position>();
 
 
-            var x_1 = entityPosition.Pos.X - Position.X + Globals.gDM.PreferredBackBufferWidth / 2;
-            var y_1 = entityPosition.Pos.Y - Position.Y + Globals.gDM.PreferredBackBufferHeight / 2;
+            var x_1 = entityPosition.Pos.X - playerPosition.Pos.X + Globals.gDM.PreferredBackBufferWidth / 2;
+            var y_1 = entityPosition.Pos.Y - playerPosition.Pos.Y + Globals.gDM.PreferredBackBufferHeight / 2;
             return new Rectangle((int)x_1, (int)y_1, Width, Height);
         }
+
 
         public override void Update(GameTime gameTime)
         {

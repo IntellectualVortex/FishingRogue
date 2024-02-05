@@ -6,12 +6,12 @@ namespace FishingRogue
 { 
     class Player : Entity
     {
-        Vector2 initialPosition = new Vector2(Globals.gDM.PreferredBackBufferWidth / 2,
+        public Vector2 initialPosition = new Vector2(Globals.gDM.PreferredBackBufferWidth / 2,
                     Globals.gDM.PreferredBackBufferHeight / 2);
 
         public Player()
         {
-            Sprite sprite = new Sprite(this, this, Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"), Color.White);
+            Sprite sprite = new Sprite(this, this, Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"), Color.White, initialPosition);
             Velocity velocity = new Velocity(this);
             Position position = new Position(this, initialPosition);
             Move move = new Move(this);

@@ -11,7 +11,7 @@ namespace FishingRogue
 
         public Map(Player player)
         {
-            Sprite sprite = new Sprite(this, player, Globals.content.Load<Texture2D>("PlayerAssets\\Tex"), Color.Black);
+            Sprite sprite = new Sprite(this, player, Globals.content.Load<Texture2D>("PlayerAssets\\Tex"), Color.White);
             Position position = new Position(this, initialPosition);
 
 
