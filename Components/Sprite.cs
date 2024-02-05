@@ -11,21 +11,15 @@ namespace FishingRogue
 {
     class Sprite : Component
     {
-        Texture2D Texture { get; set; }
+        Texture2D Texture { get; set; } 
         int Width { get; set; }
         int Height { get; set; }
-        Color Color { get; set; } = Color.White;
-        float Rotation { get; set; } 
+        Color Color { get; set; }
+        float Rotation { get; set; }
 
         Player _player;
 
-        public Sprite(Entity entity, Player player, Texture2D texture) : base(entity)
-        {
-            Texture = texture;
-            _player = player;
-        }
-
-        public Sprite(Entity entity, Player player, Texture2D texture, int width, int height, Color color, float rotation) : base(entity)
+        public Sprite(Entity entity, Player player, Texture2D texture, Color color, float rotation = 0, int width = 100, int height = 100) : base(entity)
         {
             Texture = texture;
             _player = player;
@@ -35,13 +29,9 @@ namespace FishingRogue
             Rotation = rotation;
         }
 
-        public Sprite(Entity entity) : base(entity)
-        {
-        }
-
         public void ScaleDraw(Texture2D tex, Vector2 pos, int width, int height, Color color, float rot)
         {
-            var rectangle = WorldSpaceToCameraSpace(width, height);
+            var rectangle = WorldSpaceToCameraSpace();
             Globals.spriteBatch.Draw(tex,
             rectangle,
             null,
@@ -49,14 +39,14 @@ namespace FishingRogue
             rot, new Vector2(tex.Bounds.Width / 2, tex.Bounds.Height / 2), SpriteEffects.None, 0f);
         }
 
-        public Rectangle WorldSpaceToCameraSpace(int width, int height)
+        public Rectangle WorldSpaceToCameraSpace()
         {
             Position entityPosition = entity.GetComponent<Position>();
             Position playerPosition = _player.GetComponent<Position>();
 
             var x_1 = entityPosition.Pos.X - playerPosition.Pos.X + Globals.gDM.PreferredBackBufferWidth / 2;
             var y_1 = entityPosition.Pos.Y - playerPosition.Pos.Y + Globals.gDM.PreferredBackBufferHeight / 2;
-            return new Rectangle((int)x_1, (int)y_1, width, height);
+            return new Rectangle((int)x_1, (int)y_1, Width, Height);
         }
 
         public override void Update(GameTime gameTime)
