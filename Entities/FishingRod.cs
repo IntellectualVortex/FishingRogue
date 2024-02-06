@@ -10,7 +10,11 @@ namespace FishingRogue
 
         public FishingRod(Player player)
         {
-            Sprite sprite = new Sprite(this, player, Globals.content.Load<Texture2D>("PlayerAssets\\fishingPole"), Color.Black, initialPosition, 0, 500);
+            Sprite sprite = new Sprite(
+                entity : this, 
+                player : player, 
+                texture : Globals.content.Load<Texture2D>("PlayerAssets\\fishingPole"));
+
             Velocity velocity = new Velocity(this);
             Position position = new Position(this, initialPosition);
             Move move = new Move(this);

@@ -10,7 +10,11 @@ namespace FishingRogue
 
         public FishingRodHook(Player player)
         {
-            Sprite sprite = new Sprite(this, player, Globals.content.Load<Texture2D>("PlayerAssets\\hook"), Color.White);
+            Sprite sprite = new Sprite(
+                entity: this, 
+                player : player, 
+                texture : Globals.content.Load<Texture2D>("PlayerAssets\\hook"));
+
             Velocity velocity = new Velocity(this);
             Position position = new Position(this, initialPosition);
             Move move = new Move(this);
@@ -20,7 +24,7 @@ namespace FishingRogue
             AddComponent(velocity);
             AddComponent(sprite);
             AddComponent(move);
-            //FishingRod youtrack test 
+           
         }
     }
 }
