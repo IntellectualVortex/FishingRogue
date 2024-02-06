@@ -5,7 +5,6 @@ namespace FishingRogue
 {
     class Position : Component
     {
-
         public Vector2 Pos { get; set; }
 
         public Position(Entity entity) : base(entity)

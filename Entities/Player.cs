@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 
 namespace FishingRogue
-{ 
+{
     class Player : Entity
     {
         public Vector2 initialPosition = new Vector2(Globals.gDM.PreferredBackBufferWidth / 2,
@@ -12,9 +12,9 @@ namespace FishingRogue
         public Player()
         {
             Sprite sprite = new Sprite(
-                entity : this, 
-                player : this, 
-                texture : Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"));
+                entity: this,
+                player: this,
+                texture: Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"));
 
             Velocity velocity = new Velocity(this);
             Position position = new Position(this, initialPosition);

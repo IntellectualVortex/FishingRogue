@@ -11,9 +11,9 @@ namespace FishingRogue
         public FishingRodHook(Player player)
         {
             Sprite sprite = new Sprite(
-                entity: this, 
-                player : player, 
-                texture : Globals.content.Load<Texture2D>("PlayerAssets\\hook"));
+                entity: this,
+                player: player,
+                texture: Globals.content.Load<Texture2D>("PlayerAssets\\hook"));
 
             Velocity velocity = new Velocity(this);
             Position position = new Position(this, initialPosition);
@@ -24,7 +24,7 @@ namespace FishingRogue
             AddComponent(velocity);
             AddComponent(sprite);
             AddComponent(move);
-           
+
         }
     }
 }

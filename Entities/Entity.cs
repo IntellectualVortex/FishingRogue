@@ -9,14 +9,13 @@ namespace FishingRogue
     {
         Guid id = Guid.NewGuid();
 
-        internal List<Component> components = new List<Component>(); 
+        internal List<Component> components = new List<Component>();
 
         public Entity()
         {
             Debug.WriteLine(id);
         }
 
-        
         public T GetComponent<T>() where T : Component
         {
             foreach (Component component in components)
