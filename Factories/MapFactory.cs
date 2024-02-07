@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FishingRogue
 {
-    internal class MapFactory
+    public class MapFactory
     {
     }
 }

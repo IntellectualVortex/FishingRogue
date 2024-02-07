@@ -5,18 +5,17 @@ namespace FishingRogue
 {
     class FishingRod : Entity
     {
-        Vector2 initialPosition = new Vector2(Globals.gDM.PreferredBackBufferWidth / 2 + 60,
-            Globals.gDM.PreferredBackBufferHeight / 2 - 30);
+        Vector2 initialPosition = new Vector2(0, 0);
 
         public FishingRod(Player player)
         {
             Sprite sprite = new Sprite(
-                entity : this, 
-                player : player, 
-                texture : Globals.content.Load<Texture2D>("PlayerAssets\\fishingPole"));
+                entity: this,
+                player: player,
+                texture: Globals.content.Load<Texture2D>("PlayerAssets\\fishingPole"));
 
             Velocity velocity = new Velocity(this);
-            Position position = new Position(this, initialPosition);
+            WorldPosition position = new WorldPosition(this, initialPosition);
             Move move = new Move(this);
 
             AddComponent(position);

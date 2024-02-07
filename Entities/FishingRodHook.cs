@@ -16,7 +16,7 @@ namespace FishingRogue
                 texture: Globals.content.Load<Texture2D>("PlayerAssets\\hook"));
 
             Velocity velocity = new Velocity(this);
-            Position position = new Position(this, initialPosition);
+            WorldPosition position = new WorldPosition(this, initialPosition);
             Move move = new Move(this);
 
 

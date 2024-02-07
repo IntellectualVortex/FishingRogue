@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace FishingRogue
 {
-    class Velocity : Component
+    public class Velocity : Component
     {
 
         public float SpeedMult { get; set; } = 1f;

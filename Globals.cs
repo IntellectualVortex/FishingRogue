@@ -5,11 +5,13 @@ using System;
 
 namespace FishingRogue
 {
-    public class Globals
+    public static class Globals
     {
         public static ContentManager content;
         public static SpriteBatch spriteBatch;
         public static GraphicsDeviceManager gDM;
+        public static Texture2D fishermanTexture;
+
         public static Random random;
         public static float TotalSeconds;
         public static SpriteEffects sE;

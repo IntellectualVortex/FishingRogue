@@ -3,11 +3,11 @@
 
 namespace FishingRogue
 {
-    class UpdateSystem
+    public class UpdateSystem
     {
         World1 world;
 
-        public UpdateSystem(World1 world) {  this.world = world; }
+        public UpdateSystem(World1 world) { this.world = world; }
 
         public void Update(GameTime gameTime)
         {

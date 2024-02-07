@@ -11,29 +11,51 @@ using System.Runtime.CompilerServices;
 
 namespace FishingRogue
 {
-    class Sprite : Component
+    public class Sprite : Component
     {
-        Texture2D Texture { get; set; }
-        int Width { get; set; }
-        int Height { get; set; }
+        public int cameraWidth;
+        public int cameraHeight;
+        public Texture2D Texture { get; set; }
+        public int? customWidth;
+        public int? customHeight;
+        int Width
+        {
+            get
+            {
+                if (customWidth != null) { return (int)customWidth; }
+                return Texture.Bounds.Width;
+            }
+            set
+            {
+                Width = value;
+            }
+        }
+        int Height
+        {
+            get
+            {
+                if (customHeight != null) { return (int)customHeight; }
+                return Texture.Bounds.Height;
+            }
+            set
+            {
+                Height = value;
+            }
+        }
+
         float Rotation { get; set; }
 
         Player? _player;
 
-        public Sprite(Entity entity, Texture2D texture, float rotation = 0, int? width = null, int? height = null, Player? player = null) : base(entity)
+        public Sprite(Entity entity, Texture2D texture, float rotation = 0, int? width = null, int? height = null, Player? player = null, int _cameraWidth = 1920, int _cameraHeight = 1080) : base(entity)
         {
             Texture = texture;
             Rotation = rotation;
             _player = player;
-
-            if (width == null)
-            {
-                Width = Texture.Bounds.Width;
-            }
-            if (height == null)
-            {
-                Height = Texture.Bounds.Height;
-            }
+            customWidth = width;
+            customHeight = height;
+            cameraWidth = _cameraWidth;
+            cameraHeight = _cameraHeight;
         }
 
         public void ScaleDraw()
@@ -44,36 +66,34 @@ namespace FishingRogue
             sourceRectangle: null,
             color: Color.White,
             rotation: Rotation,
-            origin: new Vector2(Texture.Bounds.Width / 2, Texture.Bounds.Height / 2),
+            origin: new Vector2(Width / 2, Height / 2),
             effects: SpriteEffects.None,
             layerDepth: 0f);
         }
 
         public Rectangle WorldSpaceToCameraSpace()
         {
-            Position? playerPosition = null;
+            WorldPosition? playerPosition = null;
 
-            Position entityPosition = entity.GetComponent<Position>();
-            FixedPosition fixedPosition = entity.GetComponent<FixedPosition>();
-            Debug.WriteLine(entityPosition.Pos.X.ToString() + ", " + entityPosition.Pos.Y.ToString());
+            WorldPosition entityPosition = entity.GetComponent<WorldPosition>();
+            CameraPosition fixedPosition = entity.GetComponent<CameraPosition>();
+
 
             if (_player != null)
             {
-                playerPosition = _player.GetComponent<Position>();
+                playerPosition = _player.GetComponent<WorldPosition>();
             }
 
             if (fixedPosition == null && playerPosition != null)
             {
-                var x_1 = entityPosition.Pos.X - playerPosition.Pos.X + Globals.gDM.PreferredBackBufferWidth / 2;
-                var y_1 = entityPosition.Pos.Y - playerPosition.Pos.Y + Globals.gDM.PreferredBackBufferHeight / 2;
+                var x_1 = entityPosition.Pos.X - playerPosition.Pos.X + cameraWidth / 2;
+                var y_1 = entityPosition.Pos.Y - playerPosition.Pos.Y + cameraHeight / 2;
                 return new Rectangle((int)x_1, (int)y_1, Width, Height);
             }
-
             else
             {
                 return new Rectangle((int)fixedPosition.Pos.X, (int)fixedPosition.Pos.Y, Width, Height);
             }
-
         }
 
         public override void Update(GameTime gameTime)

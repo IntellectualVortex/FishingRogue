@@ -30,8 +30,14 @@ namespace FishingRogue
         {
             Globals.content = this.Content;
             Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
+            Globals.fishermanTexture = Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman");
             world = new World1();
             updateSystem = new UpdateSystem(world);
+        }
+
+        public void TestLoadContent()
+        {
+            Globals.content = this.Content;
         }
 
         protected override void Update(GameTime gameTime)

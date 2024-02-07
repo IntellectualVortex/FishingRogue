@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace FishingRogue
 {
-    class MovePlayer : Component
+    public class MovePlayer : Component
     {
 
         public MovePlayer(Entity entity) : base(entity)
@@ -12,7 +12,7 @@ namespace FishingRogue
 
         public override void Update(GameTime gameTime)
         {
-            Position playerPosition = entity.GetComponent<Position>();
+            WorldPosition playerPosition = entity.GetComponent<WorldPosition>();
             Velocity playerVelocity = entity.GetComponent<Velocity>();
             var vel = playerVelocity.Vel;
 

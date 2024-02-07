@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace FishingRogue
 {
-    abstract class Component
+    public abstract class Component
     {
         public Entity entity;
 

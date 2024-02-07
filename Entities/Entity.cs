@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace FishingRogue
 {
-    class Entity
+    public class Entity
     {
         Guid id = Guid.NewGuid();
 

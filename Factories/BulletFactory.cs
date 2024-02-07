@@ -1,7 +1,7 @@
 ﻿
 namespace FishingRogue
 {
-    class BulletFactory
+    public class BulletFactory
     {
         public void CreateBullet()
         {
