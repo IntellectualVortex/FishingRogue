@@ -17,8 +17,9 @@ namespace FishingRogue
                 texture: Globals.content.Load<Texture2D>("PlayerAssets\\Tex"));
 
             Position position = new Position(this, initialPosition);
+            FixedPosition fixedPosition = new FixedPosition(this);
 
-
+            AddComponent(fixedPosition);
             AddComponent(position);
             AddComponent(sprite);
         }

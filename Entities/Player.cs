@@ -19,7 +19,9 @@ namespace FishingRogue
             Velocity velocity = new Velocity(this);
             Position position = new Position(this, initialPosition);
             Move move = new Move(this);
+            FixedPosition fixedPosition = new FixedPosition(this);
 
+            AddComponent(fixedPosition);
             AddComponent(position);
             AddComponent(velocity);
             AddComponent(move);
