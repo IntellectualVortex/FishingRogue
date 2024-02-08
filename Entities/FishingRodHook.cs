@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework;
 
 namespace FishingRogue
 {
-    class FishingRodHook : Entity
+    public class FishingRodHook : Entity
     {
-        Vector2 initialPosition = new Vector2(0, 0);
+        public Vector2 initialPosition = new Vector2(0, 0);
 
         public FishingRodHook(Player player)
         {
@@ -18,12 +18,15 @@ namespace FishingRogue
 
             Velocity velocity = new Velocity(this);
             WorldPosition position = new WorldPosition(this, initialPosition);
+            FishingAction fishingAction = new FishingAction(this, player);
             Move move = new Move(this);
+
 
 
             AddComponent(position);
             AddComponent(velocity);
             AddComponent(sprite);
+            AddComponent(fishingAction);
             AddComponent(move);
 
         }
