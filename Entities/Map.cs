@@ -17,7 +17,6 @@ namespace FishingRogue
 
             WorldPosition position = new WorldPosition(this, initialPosition);
 
-            AddComponent(fixedPosition);
             AddComponent(position);
             AddComponent(sprite);
         }
