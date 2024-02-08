@@ -21,14 +21,11 @@ namespace FishingRogue
             FishingAction fishingAction = new FishingAction(this, player);
             Move move = new Move(this);
 
-
-
             AddComponent(position);
             AddComponent(velocity);
             AddComponent(sprite);
             AddComponent(fishingAction);
             AddComponent(move);
-
         }
     }
 }
