@@ -12,7 +12,9 @@ namespace FishingRogue
             Sprite sprite = new Sprite(
                 entity: this,
                 player: player,
-                texture: Globals.content.Load<Texture2D>("PlayerAssets\\fishingPole"));
+                texture: Globals.content.Load<Texture2D>("PlayerAssets\\fishingPole"),
+                width: 128,
+                height: 128);
 
             Velocity velocity = new Velocity(this);
             WorldPosition position = new WorldPosition(this, initialPosition);

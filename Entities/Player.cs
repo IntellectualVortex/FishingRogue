@@ -13,7 +13,9 @@ namespace FishingRogue
             Sprite sprite = new Sprite(
                 entity: this,
                 player: this,
-                texture: Globals.fishermanTexture);
+                texture: Globals.fishermanTexture,
+                width: 128,
+                height: 128);
 
             Velocity velocity = new Velocity(this);
             WorldPosition position = new WorldPosition(this, initialPosition);
