@@ -10,9 +10,11 @@ namespace FishingRogue
     {
 
         Player _player;
-        float pressedDuration { get; set; }
+        float PressedDuration { get; set; }
+        MouseState OldMouseState { get; set; } 
+        int mousePressedNumber { get; set; }
 
-
+        float playerFishingRange { get; set; } = 200;
 
         public FishingAction(Entity entity, Player player) : base(entity)
         {
@@ -22,42 +24,45 @@ namespace FishingRogue
         public override void Update(GameTime gameTime) 
         {
             MouseState newMouseState = Mouse.GetState();
-            MouseState oldMouseState = Mouse.GetState();
+
             
             WorldPosition hookPosition = entity.GetComponent<WorldPosition>();
             Velocity hookVelocity = entity.GetComponent<Velocity>();
             WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
             var vel = hookVelocity.Vel;
 
-            if (oldMouseState.LeftButton == ButtonState.Pressed && newMouseState.LeftButton == ButtonState.Released)
+            if (OldMouseState.LeftButton == ButtonState.Released && newMouseState.LeftButton == ButtonState.Released)
             {
-                vel += new Vector2(pressedDuration, 0);
-
-                pressedDuration += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                hookPosition.Pos = playerPosition.Pos;
+                if (hookPosition.Pos.X <= playerFishingRange)
+                {
+                    vel += new Vector2(PressedDuration, 0);
+                }
             }
 
-            if (newMouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released)
+            if (newMouseState.LeftButton == ButtonState.Pressed && OldMouseState.LeftButton == ButtonState.Released)
             {
-                //first time pres logic
+                hookPosition.Pos = playerPosition.Pos;
             }
 
             if (newMouseState.LeftButton == ButtonState.Pressed)
             {
-                // left click held down logic
+                PressedDuration += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             }
 
+            if (newMouseState.LeftButton == ButtonState.Pressed)
+            {
+                PressedDuration += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            }
 
             if (vel != Vector2.Zero)
             {
                 vel.Normalize();
-                vel *= pressedDuration / 1000;
+                vel *= PressedDuration / 100;
             }
 
             hookPosition.Pos += vel;
-            Debug.WriteLine(pressedDuration.ToString());
-            oldMouseState = newMouseState;
+            Debug.WriteLine(PressedDuration.ToString());
+            OldMouseState = newMouseState;
         }
-
     }
 }
