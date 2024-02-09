@@ -16,7 +16,7 @@ namespace FishingRogue
         MouseState _oldMouseState;
         //bool _isFishing;  implement for fish catching, pond activity, bobber animation, etc.
         float _power;
-        float _powerIncreaseRate = .01f;
+        float _powerIncreaseRate = 25f;
 
 
         enum FishingState
@@ -36,7 +36,7 @@ namespace FishingRogue
 
         public override void Update(GameTime gameTime)
         {
-            float timePassed = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            float timePassed = (float)gameTime.ElapsedGameTime.TotalSeconds;
             MouseState currentMouseState = Mouse.GetState();
 
             WorldPosition hookPosition = entity.GetComponent<WorldPosition>();
@@ -66,8 +66,10 @@ namespace FishingRogue
                     break;
 
                 case FishingState.Casted:
-
                     hookPosition.Pos += hookVelocity.Vel * timePassed;
+
+                    hookVelocity.Vel += new Vector2(0, 9.8f) * timePassed;
+
                     if (currentMouseState.LeftButton == ButtonState.Pressed && _oldMouseState.LeftButton == ButtonState.Released)
                     {
                         fishingState = FishingState.Returning;
