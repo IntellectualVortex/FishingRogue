@@ -18,7 +18,7 @@ namespace FishingRogue
 
             Velocity velocity = new Velocity(this);
             WorldPosition position = new WorldPosition(this, initialPosition);
-            FishingAction fishingAction = new FishingAction(this, player);
+            CastFishingRod fishingAction = new CastFishingRod(this, player);
             Move move = new Move(this);
 
             AddComponent(position);
