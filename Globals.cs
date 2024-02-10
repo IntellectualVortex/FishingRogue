@@ -11,7 +11,7 @@ namespace FishingRogue
         public static SpriteBatch spriteBatch;
         public static GraphicsDeviceManager gDM;
         public static Texture2D fishermanTexture;
-
+        public static GraphicsDevice gD;
         public static Random random;
         public static float TotalSeconds;
         public static SpriteEffects sE;

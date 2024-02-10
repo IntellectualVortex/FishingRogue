@@ -5,7 +5,7 @@ namespace FishingRogue
 {
     public class FishingRodHook : Entity
     {
-        public Vector2 initialPosition = new Vector2(0, 0);
+        public Vector2 initialPosition = new Vector2(110, 25);
 
         public FishingRodHook(Player player)
         {
@@ -13,8 +13,9 @@ namespace FishingRogue
                 entity: this,
                 player: player,
                 texture: Globals.content.Load<Texture2D>("PlayerAssets\\hook"),
-                width: 128,
-                height: 128);
+                width: 64,
+                height: 64);
+
 
             Velocity velocity = new Velocity(this);
             WorldPosition position = new WorldPosition(this, initialPosition);

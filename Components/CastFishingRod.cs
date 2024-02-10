@@ -85,7 +85,7 @@ namespace FishingRogue
 
                 case FishingState.Returning:
 
-                    hookPosition.Pos = Vector2.Lerp(hookPosition.Pos, hookStartingPosition, 0.1f);
+                    hookPosition.Pos = Vector2.Lerp(hookPosition.Pos, hookStartingPosition, 0.5f);
 
                     if (Vector2.Distance(hookPosition.Pos, hookStartingPosition) < 1f)
                     {
@@ -95,7 +95,8 @@ namespace FishingRogue
                     break;
             }
 
-            Debug.WriteLine(_power.ToString());
+            Debug.WriteLine(hookPosition.Pos, hookStartingPosition.ToString());
+            Debug.WriteLine(fishingState);
             _oldMouseState = currentMouseState;
         }
     }

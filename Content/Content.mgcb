@@ -37,6 +37,30 @@
 /processorParam:TextureFormat=Color
 /build:PlayerAssets/fishingPole.png
 
+#begin PlayerAssets/greenpixel.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:PlayerAssets/greenpixel.png
+
+#begin PlayerAssets/greenpixel5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:PlayerAssets/greenpixel5.png
+
 #begin PlayerAssets/hook.png
 /importer:TextureImporter
 /processor:TextureProcessor

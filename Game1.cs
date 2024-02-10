@@ -8,6 +8,7 @@ namespace FishingRogue
     {
         World1 world;
         UpdateSystem updateSystem;
+        public Texture2D pixel;
 
         public Game1()
         {
@@ -18,7 +19,9 @@ namespace FishingRogue
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            pixel = new Texture2D(GraphicsDevice, 1, 1);
+            pixel.SetData(new Color[] { Color.White });
+
             Globals.gDM.IsFullScreen = false;
             Globals.gDM.PreferredBackBufferWidth = 1920;
             Globals.gDM.PreferredBackBufferHeight = 1080;
@@ -30,6 +33,7 @@ namespace FishingRogue
         {
             Globals.content = this.Content;
             Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
+
             Globals.fishermanTexture = Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman");
             world = new World1();
             updateSystem = new UpdateSystem(world);
@@ -50,6 +54,11 @@ namespace FishingRogue
             Globals.spriteBatch.Begin(SpriteSortMode.Deferred, blendState: BlendState.AlphaBlend, null);
             updateSystem.Update(gameTime);
             Globals.spriteBatch.End();
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+
         }
     }
 }

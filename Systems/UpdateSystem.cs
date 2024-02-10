@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Linq;
 
 
 namespace FishingRogue
@@ -11,13 +12,13 @@ namespace FishingRogue
 
         public void Update(GameTime gameTime)
         {
-            foreach (Entity entity in world.entities)
-            {
+            // iterate through both 
+
+            foreach (Entity entity in world.entities.Concat(world.pixelEntities))
                 foreach (Component component in entity.components)
                 {
                     component.Update(gameTime);
                 }
-            }
         }
     }
 }

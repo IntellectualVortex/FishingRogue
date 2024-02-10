@@ -13,6 +13,11 @@ namespace FishingRogue
             this.entity = entity;
         }
 
-        public abstract void Update(GameTime gameTime);
+        public abstract void Update(GameTime gameTime); // keep this abstract?
+
+        public virtual void PixelUpdate(GameTime gameTime)
+        {
+
+        }
     }
 }

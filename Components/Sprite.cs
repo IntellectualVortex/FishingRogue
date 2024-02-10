@@ -71,6 +71,19 @@ namespace FishingRogue
             layerDepth: 0f);
         }
 
+        public void PixelDraw()
+        {
+            var rectangle = WorldSpaceToCameraSpace();
+            Globals.spriteBatch.Draw(texture: Texture,
+            destinationRectangle: rectangle,
+            sourceRectangle: null,
+            color: Color.White,
+            rotation: Rotation,
+            origin: new Vector2(Width / 2, Height / 2),
+            effects: SpriteEffects.None,
+            layerDepth: 0f);
+        }
+
         public Rectangle WorldSpaceToCameraSpace()
         {
             WorldPosition? playerPosition = null;
@@ -99,7 +112,15 @@ namespace FishingRogue
         public override void Update(GameTime gameTime)
         {
             ScaleDraw();
+            PixelDraw();
         }
+
+        /*        public override void PixelUpdate(GameTime gameTime)
+                {
+                    PixelDraw();
+                }
+        */
+
     }
 }
 
