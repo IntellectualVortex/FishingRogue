@@ -5,7 +5,7 @@ namespace FishingRogue
 {
     class FishingRod : Entity
     {
-        Vector2 initialPosition = new Vector2(0, 0);
+        Vector2 initialPosition = new Vector2(120, 40);
 
         public FishingRod(Player player)
         {
