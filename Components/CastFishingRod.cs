@@ -11,7 +11,6 @@ namespace FishingRogue
 {
     public class CastFishingRod : Component
     {
-
         Player _player;
         MouseState _oldMouseState;
         //bool _isFishing;  implement for fish catching, pond activity, bobber animation, etc.
@@ -94,7 +93,7 @@ namespace FishingRogue
                     }
                     break;
             }
-
+            Globals.hookPosition = hookPosition.Pos;
             Debug.WriteLine(hookPosition.Pos, hookStartingPosition.ToString());
             Debug.WriteLine(fishingState);
             _oldMouseState = currentMouseState;

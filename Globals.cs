@@ -15,6 +15,7 @@ namespace FishingRogue
         public static Random random;
         public static float TotalSeconds;
         public static SpriteEffects sE;
+        public static Vector2 hookPosition;
 
         public static float RandomFloat(float min, float max)
         {
