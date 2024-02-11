@@ -12,12 +12,15 @@ namespace FishingRogue
 
         public void Update(GameTime gameTime)
         {
-            // iterate through both 
-
-            foreach (Entity entity in world.entities.Concat(world.pixelEntities))
+            foreach (Entity entity in world.entities)
                 foreach (Component component in entity.components)
                 {
                     component.Update(gameTime);
+                }
+            foreach (Entity entity in world.pixelEntities)
+                foreach (Component component in entity.components)
+                {
+                    component.PixelUpdate(gameTime);
                 }
         }
     }

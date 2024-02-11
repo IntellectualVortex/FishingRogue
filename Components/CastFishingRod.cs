@@ -19,7 +19,7 @@ namespace FishingRogue
         float _powerIncreaseRate = 25f;
         int _hookRange = 400;
 
-        enum FishingState
+        public enum FishingState
         {
             Ready,
             Charging,
@@ -27,7 +27,7 @@ namespace FishingRogue
             Returning
         }
 
-        FishingState fishingState = FishingState.Ready;
+        public FishingState fishingState = FishingState.Ready;
 
         public CastFishingRod(Entity entity, Player player) : base(entity)
         {

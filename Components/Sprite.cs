@@ -4,8 +4,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using static FishingRogue.CastFishingRod;
 
 #endregion
 
@@ -73,15 +75,21 @@ namespace FishingRogue
 
         public void PixelDraw()
         {
-            var rectangle = WorldSpaceToCameraSpace();
-            Globals.spriteBatch.Draw(texture: Texture,
-            destinationRectangle: rectangle,
-            sourceRectangle: null,
-            color: Color.White,
-            rotation: Rotation,
-            origin: new Vector2(Width / 2, Height / 2),
-            effects: SpriteEffects.None,
-            layerDepth: 0f);
+            WorldPosition hookPosition = entity.GetComponent<WorldPosition>();
+            //CastFishingRod cFR = entity.GetComponent<CastFishingRod>();
+            WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
+            Vector2 hookStartingPosition = playerPosition.Pos;
+
+            Vector2 rodPositionCameraSpace = WorldSpaceToCameraSpace(hookStartingPosition);
+            Vector2 hookPositionCameraSpace = WorldSpaceToCameraSpace(hookPosition.Pos);
+
+
+            Vector2 toHook = hookPosition.Pos - hookStartingPosition;
+            float length = toHook.Length();
+            float angle = (float)Math.Atan2(toHook.Y, toHook.X);
+
+            Globals.spriteBatch.Draw(Texture, rodPositionCameraSpace, null, Color.White, angle, new Vector2(0, 0), new Vector2(length, 1), SpriteEffects.None, 0);
+
         }
 
         public Rectangle WorldSpaceToCameraSpace()
@@ -109,18 +117,30 @@ namespace FishingRogue
             }
         }
 
+        public Vector2 WorldSpaceToCameraSpace(Vector2 position)
+        {
+            WorldPosition? playerPosition = null;
+
+            if (_player != null)
+            {
+                playerPosition = _player.GetComponent<WorldPosition>();
+            }
+
+            var x_1 = position.X - playerPosition.Pos.X + cameraWidth / 2;
+            var y_1 = position.Y - playerPosition.Pos.Y + cameraHeight / 2;
+            return new Vector2((int)x_1, (int)y_1);
+        }
+
         public override void Update(GameTime gameTime)
         {
             ScaleDraw();
-            PixelDraw();
+
         }
 
-        /*        public override void PixelUpdate(GameTime gameTime)
-                {
-                    PixelDraw();
-                }
-        */
-
+        public override void PixelUpdate(GameTime gameTime)
+        {
+            PixelDraw();
+        }
     }
 }
 
