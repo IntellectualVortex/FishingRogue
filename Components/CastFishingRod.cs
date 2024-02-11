@@ -16,7 +16,7 @@ namespace FishingRogue
         //bool _isFishing;  implement for fish catching, pond activity, bobber animation, etc.
         float _power;
         float _powerIncreaseRate = 25f;
-        int _hookRange = 400;
+        int _hookRange = 200;
 
         public enum FishingState
         {
@@ -79,12 +79,13 @@ namespace FishingRogue
                     if (currentMouseState.LeftButton == ButtonState.Pressed && _oldMouseState.LeftButton == ButtonState.Released)
                     {
                         fishingState = FishingState.Returning;
+
                     }
                     break;
 
                 case FishingState.Returning:
 
-                    hookPosition.Pos = Vector2.Lerp(hookPosition.Pos, hookStartingPosition, 0.5f);
+                    hookPosition.Pos = Vector2.Lerp(hookPosition.Pos, hookStartingPosition, .1f);
 
                     if (Vector2.Distance(hookPosition.Pos, hookStartingPosition) < 1f)
                     {
