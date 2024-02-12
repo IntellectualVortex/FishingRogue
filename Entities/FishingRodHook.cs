@@ -5,7 +5,7 @@ namespace FishingRogue
 {
     public class FishingRodHook : Entity
     {
-        public Vector2 initialPosition = new Vector2(110, 25);
+        public Vector2 initialPosition = new Vector2(Globals.gDM.PreferredBackBufferWidth / 2 + 120, Globals.gDM.PreferredBackBufferHeight / 2 + 20);
 
         public FishingRodHook(Player player)
         {
@@ -18,15 +18,14 @@ namespace FishingRogue
 
 
             Velocity velocity = new Velocity(this);
-            WorldPosition position = new WorldPosition(this, initialPosition);
-            CastFishingRod fishingAction = new CastFishingRod(this, player);
-            Move move = new Move(this);
+            CameraPosition position = new CameraPosition(this, initialPosition);
+            CastFishingRod fishingAction = new CastFishingRod(entity: this, player: player);
 
             AddComponent(position);
             AddComponent(velocity);
-            AddComponent(sprite);
             AddComponent(fishingAction);
-            AddComponent(move);
+            AddComponent(sprite);
+
         }
     }
 }

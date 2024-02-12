@@ -21,6 +21,8 @@ namespace FishingRogue
 
         public override void Update(GameTime gameTime)
         {
+            //WorldPosition pos = entity.GetComponent<WorldPosition>();
+            //pos.Pos += Vel;
         }
     }
 }

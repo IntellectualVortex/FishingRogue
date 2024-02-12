@@ -77,11 +77,12 @@ namespace FishingRogue
             //CastFishingRod cFR = entity.GetComponent<CastFishingRod>();
             WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
             Vector2 hookStartingPosition = playerPosition.Pos;
+            WorldPosition hookPosition = entity.GetComponent<WorldPosition>();
 
             Vector2 rodPositionCameraSpace = WorldSpaceToCameraSpace(hookStartingPosition);
 
 
-            Vector2 toHook = Globals.hookPosition - hookStartingPosition;
+            Vector2 toHook = hookPosition.Pos - hookStartingPosition;
             float length = toHook.Length();
             float angle = (float)Math.Atan2(toHook.Y, toHook.X);
 

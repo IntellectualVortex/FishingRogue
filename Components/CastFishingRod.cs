@@ -15,9 +15,13 @@ namespace FishingRogue
         MouseState _oldMouseState;
         //bool _isFishing;  implement for fish catching, pond activity, bobber animation, etc.
         float _power;
-        float _powerIncreaseRate = 25f;
-        int _hookRange = 200;
-
+        float _maxPower;
+        float _minPower;
+        float _powerCoefficient = 10f;
+        float _returningSpeed = 5f;
+        float _playerReach = 10f;
+        float chargingSince = 0f;
+        float timeLeftFlying = 0f;
         public enum FishingState
         {
             Ready,
@@ -31,17 +35,19 @@ namespace FishingRogue
         public CastFishingRod(Entity entity, Player player) : base(entity)
         {
             _player = player;
+            _maxPower = 5 * _powerCoefficient;
+            _minPower = 1 * _powerCoefficient;
         }
 
         public override void Update(GameTime gameTime)
         {
-            float timePassed = (float)gameTime.ElapsedGameTime.TotalSeconds;
             MouseState currentMouseState = Mouse.GetState();
 
-            WorldPosition hookPosition = entity.GetComponent<WorldPosition>();
+            CameraPosition hookPosition = entity.GetComponent<CameraPosition>();
             WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
-            Vector2 hookStartingPosition = playerPosition.Pos;
             Velocity hookVelocity = entity.GetComponent<Velocity>();
+            Vector2 hookInitialPosition = ((FishingRodHook)entity).initialPosition;
+
 
             switch (fishingState)
             {
@@ -49,53 +55,64 @@ namespace FishingRogue
                     if (currentMouseState.LeftButton == ButtonState.Pressed && _oldMouseState.LeftButton == ButtonState.Released)
                     {
                         fishingState = FishingState.Charging;
+                        chargingSince = (float)gameTime.TotalGameTime.TotalSeconds;
                     }
+                    hookPosition.Pos = hookInitialPosition;
                     break;
 
 
                 case FishingState.Charging:
-                    _power += timePassed * _powerIncreaseRate;
-
                     if (currentMouseState.LeftButton == ButtonState.Released && _oldMouseState.LeftButton == ButtonState.Pressed)
                     {
+
+                        _power = ((float)gameTime.TotalGameTime.TotalSeconds - chargingSince) * _powerCoefficient + _minPower;
                         fishingState = FishingState.Casted;
-                        hookVelocity.Vel = new Vector2(1, 0) * _power;
-                        hookPosition.Pos = playerPosition.Pos;
+
+                        if (_power > _maxPower)
+                        {
+                            _power = _maxPower;
+                        }
+                        timeLeftFlying = 3f;
                     }
+                    hookPosition.Pos = hookInitialPosition;
                     break;
 
                 case FishingState.Casted:
-
-                    if (hookPosition.Pos.X <= _hookRange)
+                    if (timeLeftFlying > 0)
                     {
-                        hookVelocity.Vel += new Vector2(0, 9.8f) * timePassed;
-                        hookPosition.Pos += hookVelocity.Vel * timePassed;
+                        hookVelocity.Vel = new Vector2(1, 0) * _power;
+                        hookPosition.Pos += hookVelocity.Vel;
                     }
                     else
                     {
                         hookVelocity.Vel = new Vector2(0, 0);
+                        hookPosition.Pos += hookVelocity.Vel;
                     }
 
                     if (currentMouseState.LeftButton == ButtonState.Pressed && _oldMouseState.LeftButton == ButtonState.Released)
                     {
                         fishingState = FishingState.Returning;
-
                     }
+                    timeLeftFlying -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                     break;
 
                 case FishingState.Returning:
+                    Vector2 direction = (hookInitialPosition - hookPosition.Pos);
+                    direction.Normalize();
+                    hookVelocity.Vel = direction * _returningSpeed;
+                    hookPosition.Pos += hookVelocity.Vel;
 
-                    hookPosition.Pos = Vector2.Lerp(hookPosition.Pos, hookStartingPosition, .1f);
-
-                    if (Vector2.Distance(hookPosition.Pos, hookStartingPosition) < 1f)
+                    if (Vector2.Distance(hookPosition.Pos, hookInitialPosition) < _playerReach)
                     {
                         fishingState = FishingState.Ready;
                         _power = 0f;
+
                     }
                     break;
             }
-            Globals.hookPosition = hookPosition.Pos;
-            Debug.WriteLine(hookPosition.Pos, hookStartingPosition.ToString());
+            Debug.WriteLine("Distance: " + Vector2.Distance(hookPosition.Pos, hookInitialPosition).ToString());
+            Debug.WriteLine("Power: " + _power.ToString());
+            Debug.WriteLine("timeLeftFlying: " + timeLeftFlying.ToString());
             Debug.WriteLine(fishingState);
             _oldMouseState = currentMouseState;
         }
