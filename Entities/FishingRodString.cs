@@ -5,6 +5,9 @@ namespace FishingRogue
 {
     public class FishingRodString : Entity
     {
+
+        public Vector2 initialPosition = new Vector2(Globals.gDM.PreferredBackBufferWidth / 2 + 120, Globals.gDM.PreferredBackBufferHeight / 2 + 20);
+
         public FishingRodString(Player player)
         {
             Sprite sprite = new Sprite(
@@ -15,7 +18,7 @@ namespace FishingRogue
                 height: 5);
 
             Velocity velocity = new Velocity(this);
-            WorldPosition position = new WorldPosition(this, player.initialPosition);
+            CameraPosition position = new CameraPosition(this, initialPosition);
             Move move = new Move(this);
 
             AddComponent(position);

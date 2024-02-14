@@ -18,7 +18,6 @@ namespace FishingRogue
             entities.Add(new Pond(player));
             entities.Add(new FishingRod(player));
             entities.Add(new FishingRodHook(player));
-
         }
     }
 }

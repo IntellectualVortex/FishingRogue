@@ -73,41 +73,25 @@ namespace FishingRogue
         }
 
         public void PixelDraw()
-        {
-            //CastFishingRod cFR = entity.GetComponent<CastFishingRod>();
+        { 
+            CastFishingRod cFR = entity.GetComponent<CastFishingRod>();
             WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
+            CameraPosition hookPosition = entity.GetComponent<CameraPosition>();
             Vector2 hookStartingPosition = playerPosition.Pos;
-            WorldPosition hookPosition = entity.GetComponent<WorldPosition>();
 
-            Vector2 rodPositionCameraSpace = WorldSpaceToCameraSpace(hookStartingPosition);
-
-
-            Vector2 toHook = hookPosition.Pos - hookStartingPosition;
+            Vector2 toHook = (hookPosition.Pos - hookStartingPosition);
             float length = toHook.Length();
             float angle = (float)Math.Atan2(toHook.Y, toHook.X);
 
-            Globals.spriteBatch.Draw(Texture, rodPositionCameraSpace, null, Color.White, angle, new Vector2(0, 0), new Vector2(length, 1), SpriteEffects.None, 0);
+            Globals.spriteBatch.Draw(Texture, hookPosition.Pos, null, Color.White, angle, new Vector2(0, 0), new Vector2(length, 1), SpriteEffects.None, 0);
 
-        }
-
-        public Vector2 WorldSpaceToCameraSpace(Vector2 position)
-        {
-            WorldPosition? playerPosition = null;
-
-            if (_player != null)
-            {
-                playerPosition = _player.GetComponent<WorldPosition>();
-            }
-
-            var x_1 = position.X - playerPosition.Pos.X + cameraWidth / 2;
-            var y_1 = position.Y - playerPosition.Pos.Y + cameraHeight / 2;
-            return new Vector2((int)x_1, (int)y_1);
+            Debug.WriteLine("Sprite-Current hookposition: " + hookPosition.Pos);
+            Debug.WriteLine("Sprite-HookstartingPosition: " + hookStartingPosition);
         }
 
         public Rectangle WorldSpaceToCameraSpace()
         {
             WorldPosition? playerPosition = null;
-
             WorldPosition entityPosition = entity.GetComponent<WorldPosition>();
             CameraPosition fixedPosition = entity.GetComponent<CameraPosition>();
 
@@ -133,7 +117,6 @@ namespace FishingRogue
         public override void Update(GameTime gameTime)
         {
             ScaleDraw();
-
         }
 
         public override void PixelUpdate(GameTime gameTime)

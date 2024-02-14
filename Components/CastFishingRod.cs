@@ -44,7 +44,6 @@ namespace FishingRogue
             MouseState currentMouseState = Mouse.GetState();
 
             CameraPosition hookPosition = entity.GetComponent<CameraPosition>();
-            WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
             Velocity hookVelocity = entity.GetComponent<Velocity>();
             Vector2 hookInitialPosition = ((FishingRodHook)entity).initialPosition;
 
@@ -110,9 +109,7 @@ namespace FishingRogue
                     }
                     break;
             }
-            Debug.WriteLine("Distance: " + Vector2.Distance(hookPosition.Pos, hookInitialPosition).ToString());
-            Debug.WriteLine("Power: " + _power.ToString());
-            Debug.WriteLine("timeLeftFlying: " + timeLeftFlying.ToString());
+
             Debug.WriteLine(fishingState);
             _oldMouseState = currentMouseState;
         }
