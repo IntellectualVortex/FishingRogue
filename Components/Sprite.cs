@@ -73,7 +73,7 @@ namespace FishingRogue
         }
 
         public void PixelDraw()
-        { 
+        {
             CastFishingRod cFR = entity.GetComponent<CastFishingRod>();
             WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
             CameraPosition hookPosition = entity.GetComponent<CameraPosition>();
@@ -93,7 +93,7 @@ namespace FishingRogue
         {
             WorldPosition? playerPosition = null;
             WorldPosition entityPosition = entity.GetComponent<WorldPosition>();
-            CameraPosition fixedPosition = entity.GetComponent<CameraPosition>();
+            CameraPosition? fixedPosition = entity.GetComponent<CameraPosition>();
 
 
             if (_player != null)
@@ -101,15 +101,20 @@ namespace FishingRogue
                 playerPosition = _player.GetComponent<WorldPosition>();
             }
 
+
             if (fixedPosition == null && playerPosition != null)
             {
                 var x_1 = entityPosition.Pos.X - playerPosition.Pos.X + cameraWidth / 2;
                 var y_1 = entityPosition.Pos.Y - playerPosition.Pos.Y + cameraHeight / 2;
                 return new Rectangle((int)x_1, (int)y_1, Width, Height);
             }
-            else
+            if (fixedPosition != null)
             {
                 return new Rectangle((int)fixedPosition.Pos.X, (int)fixedPosition.Pos.Y, Width, Height);
+            }
+            else
+            {
+                return new Rectangle(0, 0, 0, 0);
             }
         }
 
