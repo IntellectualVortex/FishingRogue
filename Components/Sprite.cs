@@ -114,7 +114,7 @@ namespace FishingRogue
             }
             else
             {
-                return new Rectangle(0, 0, 0, 0);
+                return default;
             }
         }
 
