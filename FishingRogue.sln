@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FishingRogue", "FishingRogue.csproj", "{6ADBFBA6-D2FB-4919-8226-7268B00DADAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishingRogueTests", "..\FishingRogueTests\FishingRogueTests.csproj", "{76732F49-B6A6-4F64-80E9-D5AAB0412A3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FishingRogueTests", "..\FishingRogueTests\FishingRogueTests.csproj", "{76732F49-B6A6-4F64-80E9-D5AAB0412A3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
