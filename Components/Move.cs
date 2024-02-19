@@ -12,7 +12,6 @@ namespace FishingRogue
 
         public override void Update(GameTime gameTime)
         {
-            WorldPosition playerPosition = entity.GetComponent<WorldPosition>();
             Velocity playerVelocity = entity.GetComponent<Velocity>();
             var vel = playerVelocity.Vel;
 
@@ -55,8 +54,6 @@ namespace FishingRogue
                 vel.Normalize();
                 vel *= playerVelocity.SpeedMult;
             }
-
-            playerPosition.Pos += vel;
         }
     }
 }
