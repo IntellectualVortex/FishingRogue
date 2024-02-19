@@ -23,6 +23,12 @@ namespace FishingRogue
 
         public override void Update(GameTime gameTime)
         {
+            Velocity velocity = entity.GetComponent<Velocity>();
+
+            if (velocity != null)
+            {
+                Pos += velocity.Vel;
+            }
         }
     }
 }

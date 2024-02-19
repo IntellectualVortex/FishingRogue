@@ -56,7 +56,7 @@ namespace FishingRogue
                         fishingState = FishingState.Charging;
                         chargingSince = (float)gameTime.TotalGameTime.TotalSeconds;
                     }
-                    hookPosition.Pos = hookInitialPosition;
+                    //hookPosition.Pos = hookInitialPosition;
                     break;
 
 
@@ -73,19 +73,19 @@ namespace FishingRogue
                         }
                         timeLeftFlying = 3f;
                     }
-                    hookPosition.Pos = hookInitialPosition;
+                    //hookPosition.Pos = hookInitialPosition;
                     break;
 
                 case FishingState.Casted:
                     if (timeLeftFlying > 0)
                     {
                         hookVelocity.Vel = new Vector2(1, 0) * _power;
-                        hookPosition.Pos += hookVelocity.Vel;
+                        //hookPosition.Pos += hookVelocity.Vel;
                     }
                     else
                     {
                         hookVelocity.Vel = new Vector2(0, 0);
-                        hookPosition.Pos += hookVelocity.Vel;
+                        //hookPosition.Pos += hookVelocity.Vel;
                     }
 
                     if (currentMouseState.LeftButton == ButtonState.Pressed && _oldMouseState.LeftButton == ButtonState.Released)
@@ -99,7 +99,7 @@ namespace FishingRogue
                     Vector2 direction = (hookInitialPosition - hookPosition.Pos);
                     direction.Normalize();
                     hookVelocity.Vel = direction * _returningSpeed;
-                    hookPosition.Pos += hookVelocity.Vel;
+                    //hookPosition.Pos += hookVelocity.Vel;
 
                     if (Vector2.Distance(hookPosition.Pos, hookInitialPosition) < _playerReach)
                     {
