@@ -11,6 +11,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="FishingRogueTests\**" />
+    <EmbeddedResource Remove="FishingRogueTests\**" />
+    <None Remove="FishingRogueTests\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Remove="Worlds\World.cs" />
   </ItemGroup>
   <ItemGroup>

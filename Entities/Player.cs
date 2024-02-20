@@ -22,9 +22,9 @@ namespace FishingRogue
             Move move = new Move(this);
 
 
-            AddComponent(position);
-            AddComponent(velocity);
             AddComponent(move);
+            AddComponent(velocity);
+            AddComponent(position);
             AddComponent(sprite);
         }
     }
