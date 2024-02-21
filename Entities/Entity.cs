@@ -33,5 +33,12 @@ namespace FishingRogue
             components.Add(component);
             component.entity = this;
         }
+
+        public void ReplaceComponent(Component component, Component component2)
+        {
+            components.Remove(component);
+            components.Add(component2); 
+            component2.entity = this;
+        }
     }
 }
