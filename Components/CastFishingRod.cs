@@ -43,7 +43,8 @@ namespace FishingRogue
         {
             MouseState currentMouseState = Mouse.GetState();
 
-            CameraPosition hookPosition = entity.GetComponent<CameraPosition>();
+            CameraPosition hookCameraPosition = entity.GetComponent<CameraPosition>();
+            WorldPosition hookWorldPosition = entity.GetComponent<WorldPosition>();
             Velocity hookVelocity = entity.GetComponent<Velocity>();
             Vector2 hookInitialPosition = ((FishingRodHook)entity).initialPosition;
 
@@ -56,7 +57,7 @@ namespace FishingRogue
                         fishingState = FishingState.Charging;
                         chargingSince = (float)gameTime.TotalGameTime.TotalSeconds;
                     }
-                    hookPosition.Pos = hookInitialPosition;
+                    hookCameraPosition.Pos = hookInitialPosition;
                     break;
 
 
@@ -72,20 +73,23 @@ namespace FishingRogue
                             _power = _maxPower;
                         }
                         timeLeftFlying = 3f;
+
                     }
-                    hookPosition.Pos = hookInitialPosition;
+                    hookCameraPosition.Pos = hookInitialPosition;
                     break;
 
                 case FishingState.Casted:
+                    entity.ReplaceComponent(hookCameraPosition, hookWorldPosition);
+                    
                     if (timeLeftFlying > 0)
                     {
                         hookVelocity.Vel = new Vector2(1, 0) * _power;
-                        //hookPosition.Pos += hookVelocity.Vel;
+
                     }
                     else
                     {
                         hookVelocity.Vel = new Vector2(0, 0);
-                        //hookPosition.Pos += hookVelocity.Vel;
+
                     }
 
                     if (currentMouseState.LeftButton == ButtonState.Pressed && _oldMouseState.LeftButton == ButtonState.Released)
@@ -96,12 +100,13 @@ namespace FishingRogue
                     break;
 
                 case FishingState.Returning:
-                    Vector2 direction = (hookInitialPosition - hookPosition.Pos);
+                    entity.ReplaceComponent(hookWorldPosition, hookCameraPosition);
+                    Vector2 direction = (hookInitialPosition - hookCameraPosition.Pos);
                     direction.Normalize();
                     hookVelocity.Vel = direction * _returningSpeed;
-                    //hookPosition.Pos += hookVelocity.Vel;
 
-                    if (Vector2.Distance(hookPosition.Pos, hookInitialPosition) < _playerReach)
+
+                    if (Vector2.Distance(hookCameraPosition.Pos, hookInitialPosition) < _playerReach)
                     {
                         fishingState = FishingState.Ready;
                         _power = 0f;

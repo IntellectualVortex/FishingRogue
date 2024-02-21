@@ -18,11 +18,12 @@ namespace FishingRogue
 
 
             Velocity velocity = new Velocity(this);
-            CameraPosition position = new CameraPosition(this, initialPosition);
+            CameraPosition cameraPosition = new CameraPosition(this, initialPosition);
+            WorldPosition worldPosition = new WorldPosition(this);
             CastFishingRod fishingAction = new CastFishingRod(entity: this, player: player);
 
-
-            AddComponent(position);
+            AddComponent(worldPosition);
+            AddComponent(cameraPosition);
             AddComponent(velocity);
             AddComponent(fishingAction);
             AddComponent(sprite);

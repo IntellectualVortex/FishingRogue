@@ -11,6 +11,7 @@ namespace FishingRogue
 
         internal List<Component> components = new List<Component>();
 
+
         public Entity()
         {
             Debug.WriteLine(id);
@@ -34,11 +35,11 @@ namespace FishingRogue
             component.entity = this;
         }
 
-        public void ReplaceComponent(Component component, Component component2)
+        public void ReplaceComponent(Component removedComponent, Component addedComponent)
         {
-            components.Remove(component);
-            components.Add(component2); 
-            component2.entity = this;
+            components.Remove(removedComponent);
+            components.Add(addedComponent);
+            addedComponent.entity = this;
         }
     }
 }

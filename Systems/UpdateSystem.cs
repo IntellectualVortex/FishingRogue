@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Diagnostics;
 using System.Linq;
 
 
@@ -12,13 +13,14 @@ namespace FishingRogue
 
         public void Update(GameTime gameTime)
         {
-            foreach (Entity entity in world.entities)
-                foreach (Component component in entity.components)
+            foreach (Entity entity in world.entities.ToList())
+                foreach (Component component in entity.components.ToList())
                 {
                     component.Update(gameTime);
+                    
                 }
-            foreach (Entity entity in world.pixelEntities)
-                foreach (Component component in entity.components)
+            foreach (Entity entity in world.pixelEntities.ToList())
+                foreach (Component component in entity.components.ToList())
                 {
                     component.PixelUpdate(gameTime);
                 }
