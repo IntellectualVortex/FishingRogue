@@ -100,7 +100,7 @@ namespace FishingRogue
                     break;
 
                 case FishingState.Returning:
-                    entity.ReplaceComponent(hookWorldPosition, hookCameraPosition);
+                    //entity.ReplaceComponent(hookWorldPosition, hookCameraPosition);
                     Vector2 direction = (hookInitialPosition - hookCameraPosition.Pos);
                     direction.Normalize();
                     hookVelocity.Vel = direction * _returningSpeed;

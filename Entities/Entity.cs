@@ -37,9 +37,21 @@ namespace FishingRogue
 
         public void ReplaceComponent(Component removedComponent, Component addedComponent)
         {
-            components.Remove(removedComponent);
-            components.Add(addedComponent);
-            addedComponent.entity = this;
+            foreach (Component c in components)
+            {
+                Debug.WriteLine(c);
+            }
+
+            if (!components.Contains(removedComponent))
+            {
+                throw new ArgumentException("The component you are trying to remove does not exist.");
+            }
+            else
+            {
+                components.Remove(removedComponent);
+                components.Add(addedComponent);
+                addedComponent.entity = this;
+            }
         }
     }
 }
