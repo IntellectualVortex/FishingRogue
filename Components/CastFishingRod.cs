@@ -67,6 +67,7 @@ namespace FishingRogue
 
                         _power = ((float)gameTime.TotalGameTime.TotalSeconds - chargingSince) * _powerCoefficient + _minPower;
                         fishingState = FishingState.Casted;
+                        entity.ReplaceComponent(hookCameraPosition, hookWorldPosition);
 
                         if (_power > _maxPower)
                         {
@@ -79,7 +80,7 @@ namespace FishingRogue
                     break;
 
                 case FishingState.Casted:
-                    entity.ReplaceComponent(hookCameraPosition, hookWorldPosition);
+                    
                     
                     if (timeLeftFlying > 0)
                     {
