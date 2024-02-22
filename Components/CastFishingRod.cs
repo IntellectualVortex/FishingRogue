@@ -22,6 +22,7 @@ namespace FishingRogue
         float _playerReach = 10f;
         float chargingSince = 0f;
         float timeLeftFlying = 0f;
+        CameraPosition _cameraPosition;
         public enum FishingState
         {
             Ready,
@@ -64,10 +65,11 @@ namespace FishingRogue
                 case FishingState.Charging:
                     if (currentMouseState.LeftButton == ButtonState.Released && _oldMouseState.LeftButton == ButtonState.Pressed)
                     {
-
                         _power = ((float)gameTime.TotalGameTime.TotalSeconds - chargingSince) * _powerCoefficient + _minPower;
                         fishingState = FishingState.Casted;
+                        _cameraPosition = hookCameraPosition;
                         entity.ReplaceComponent(hookCameraPosition, hookWorldPosition);
+                        
 
                         if (_power > _maxPower)
                         {
@@ -101,14 +103,15 @@ namespace FishingRogue
                     break;
 
                 case FishingState.Returning:
-                    //entity.ReplaceComponent(hookWorldPosition, hookCameraPosition);
-                    Vector2 direction = (hookInitialPosition - hookCameraPosition.Pos);
+                    
+                    Vector2 direction = (hookInitialPosition - hookWorldPosition.Pos);
                     direction.Normalize();
                     hookVelocity.Vel = direction * _returningSpeed;
 
 
-                    if (Vector2.Distance(hookCameraPosition.Pos, hookInitialPosition) < _playerReach)
+                    if (Vector2.Distance(hookWorldPosition.Pos, hookInitialPosition) < _playerReach)
                     {
+                        entity.ReplaceComponent(hookWorldPosition, _cameraPosition);
                         fishingState = FishingState.Ready;
                         _power = 0f;
 
