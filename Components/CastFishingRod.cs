@@ -47,7 +47,7 @@ namespace FishingRogue
             CameraPosition hookCameraPosition = entity.GetComponent<CameraPosition>();
             WorldPosition hookWorldPosition = entity.GetComponent<WorldPosition>();
             Velocity hookVelocity = entity.GetComponent<Velocity>();
-            WorldPosition playerWorldPosition = _player.GetComponent<WorldPosition>();  
+            WorldPosition playerWorldPosition = _player.GetComponent<WorldPosition>();
 
 
             switch (fishingState)
@@ -58,7 +58,7 @@ namespace FishingRogue
                         fishingState = FishingState.Charging;
                         chargingSince = (float)gameTime.TotalGameTime.TotalSeconds;
                     }
-                    
+
                     break;
 
 
@@ -74,14 +74,14 @@ namespace FishingRogue
                         {
                             _power = _maxPower;
                         }
-                        timeLeftFlying = 1f;
+                        timeLeftFlying = 1.5f;
 
                     }
                     break;
 
                 case FishingState.Casted:
-                    
-                    
+
+
                     if (timeLeftFlying > 0)
                     {
                         hookVelocity.Vel = new Vector2(1, 0) * _power;
@@ -101,15 +101,17 @@ namespace FishingRogue
                     break;
 
                 case FishingState.Returning:
-                    
-                    Vector2 direction = (playerWorldPosition.Pos - hookWorldPosition.Pos);
+
+                    // Offset added for hook to return to rod position
+                    Vector2 direction = ((playerWorldPosition.Pos + new Vector2(120, 20)) - hookWorldPosition.Pos);
                     direction.Normalize();
                     hookVelocity.Vel = direction * _returningSpeed;
-                    
 
-                    if (Vector2.Distance(hookWorldPosition.Pos, playerWorldPosition.Pos) < _playerReach)
+
+                    // Offset added for hook to return to rod position
+                    if (Vector2.Distance(hookWorldPosition.Pos, playerWorldPosition.Pos + new Vector2(120, 20)) < _playerReach)
                     {
-                        
+
                         entity.ReplaceComponent(hookWorldPosition, _cameraPosition);
                         fishingState = FishingState.Ready;
                         _power = 0f;
@@ -118,7 +120,7 @@ namespace FishingRogue
                     break;
             }
 
-            
+
             Debug.WriteLine("hook world pos: " + hookWorldPosition.Pos);
             Debug.WriteLine("player world pos: " + playerWorldPosition.Pos.ToString());
             Debug.WriteLine("Fishing State: " + fishingState);
