@@ -58,7 +58,6 @@ namespace FishingRogue
                         fishingState = FishingState.Charging;
                         chargingSince = (float)gameTime.TotalGameTime.TotalSeconds;
                     }
-                    hookCameraPosition.Pos = hookInitialPosition;
                     break;
 
 
@@ -78,7 +77,6 @@ namespace FishingRogue
                         timeLeftFlying = 3f;
 
                     }
-                    hookCameraPosition.Pos = hookInitialPosition;
                     break;
 
                 case FishingState.Casted:
@@ -119,7 +117,7 @@ namespace FishingRogue
                     break;
             }
 
-            Debug.WriteLine(fishingState);
+            Debug.WriteLine(hookWorldPosition.Pos, hookInitialPosition.ToString());
             _oldMouseState = currentMouseState;
         }
     }
