@@ -111,7 +111,7 @@ namespace FishingRogue
             }
             else
             {
-                return default;
+                throw new ArgumentException("FIXED POSITION IS NULL!");
             }
         }
 
