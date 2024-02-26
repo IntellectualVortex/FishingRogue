@@ -22,8 +22,9 @@ namespace FishingRogue
             WorldPosition worldPosition = new WorldPosition(this);
             CastFishingRod fishingAction = new CastFishingRod(entity: this, player: player);
 
-            AddComponent(cameraPosition);
             AddComponent(worldPosition);
+            AddComponent(cameraPosition);
+            
             AddComponent(velocity);
             AddComponent(fishingAction);
             AddComponent(sprite);
