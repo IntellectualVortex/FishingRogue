@@ -47,12 +47,14 @@ namespace FishingRogue
         float Rotation { get; set; }
 
         Player? _player;
+        FishingRodHook _fishingRodHook;
 
-        public Sprite(Entity entity, Texture2D texture, float rotation = 0, int? width = null, int? height = null, Player? player = null, int _cameraWidth = 1920, int _cameraHeight = 1080) : base(entity)
+        public Sprite(Entity entity, Texture2D texture, float rotation = 0, int? width = null, int? height = null, FishingRodHook? fRH = null, Player? player = null, int _cameraWidth = 1920, int _cameraHeight = 1080) : base(entity)
         {
             Texture = texture;
             Rotation = rotation;
             _player = player;
+            _fishingRodHook = fRH;
             customWidth = width;
             customHeight = height;
             cameraWidth = _cameraWidth;
@@ -74,16 +76,15 @@ namespace FishingRogue
 
         public void PixelDraw()
         {
-            CastFishingRod cFR = entity.GetComponent<CastFishingRod>();
             WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
-            CameraPosition hookPosition = entity.GetComponent<CameraPosition>();
+            WorldPosition hookWorldPosition = _fishingRodHook.GetComponent<WorldPosition>();
             Vector2 hookStartingPosition = playerPosition.Pos;
 
-            Vector2 toHook = (hookPosition.Pos - hookStartingPosition);
+            Vector2 toHook = (hookWorldPosition.Pos - hookStartingPosition);
             float length = toHook.Length();
             float angle = (float)Math.Atan2(toHook.Y, toHook.X);
 
-            Globals.spriteBatch.Draw(Texture, hookPosition.Pos, null, Color.White, angle, new Vector2(0, 0), new Vector2(length, 1), SpriteEffects.None, 0);
+            Globals.spriteBatch.Draw(Texture, hookWorldPosition.Pos, null, Color.White, angle, new Vector2(0, 0), new Vector2(length, 1), SpriteEffects.None, 0);
         }
 
         public Rectangle WorldSpaceToCameraSpace()

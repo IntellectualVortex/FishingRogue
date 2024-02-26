@@ -6,7 +6,6 @@ namespace FishingRogue
 {
     public class Player : Entity
     {
-        public Vector2 initialPosition = new Vector2(0, 0);
 
         public Player()
         {
@@ -18,7 +17,7 @@ namespace FishingRogue
                 height: 128);
 
             Velocity velocity = new Velocity(this);
-            WorldPosition position = new WorldPosition(this, initialPosition);
+            WorldPosition position = new WorldPosition(this);
             Move move = new Move(this);
 
 
