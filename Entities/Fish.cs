@@ -6,7 +6,7 @@ namespace FishingRogue
 
     public class Fish : Entity
     {
-        public Fish(Player player, Vector2 pos) 
+        public Fish(Player player) 
         {
 
             Sprite sprite = new Sprite(
