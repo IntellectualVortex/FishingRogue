@@ -17,6 +17,7 @@ namespace FishingRogue.Factories
         public Fish CreateFish(string name) 
         {
             return new Fish(_player);
+            // Need to create fish entity and attach components as well dynamically
         }
 
     }
