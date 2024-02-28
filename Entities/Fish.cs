@@ -6,17 +6,17 @@ namespace FishingRogue
 
     public class Fish : Entity
     {
-        Vector2 initialPosition = new Vector2(300, 0);
-        public Fish(Player player) 
+        public Fish(Player player, Vector2 pos) 
         {
+
             Sprite sprite = new Sprite(
             entity: this,
             player: player,
             texture: Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"));
 
-            WorldPosition position = new WorldPosition(this, initialPosition);
+            WorldPosition worldPosition = new WorldPosition(this);
 
-            AddComponent(position);
+            AddComponent(worldPosition);
             AddComponent(sprite);
         }
     }
