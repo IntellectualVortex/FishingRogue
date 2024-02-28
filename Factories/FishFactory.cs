@@ -8,12 +8,15 @@ namespace FishingRogue.Factories
 {
     public class FishFactory
     {
-        Player player;
-        public FishFactory() { }
+        Player _player;
+        public FishFactory(Player player) 
+        {
+            _player = player;
+        }
 
         public Fish CreateFish(string name) 
         {
-            return new Fish(player);
+            return new Fish(_player);
         }
 
     }

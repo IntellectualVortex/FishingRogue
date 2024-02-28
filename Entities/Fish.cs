@@ -12,7 +12,7 @@ namespace FishingRogue
             Sprite sprite = new Sprite(
             entity: this,
             player: player,
-            texture: Globals.content.Load<Texture2D>("PlayerAssets\\Pond"));
+            texture: Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"));
 
             WorldPosition position = new WorldPosition(this, initialPosition);
 

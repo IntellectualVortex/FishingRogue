@@ -47,7 +47,7 @@ namespace FishingRogue
         float Rotation { get; set; }
 
         Player? _player;
-        FishingRodHook _fishingRodHook;
+        FishingRodHook? _fishingRodHook;
 
         public Sprite(Entity entity, Texture2D texture, float rotation = 0, int? width = null, int? height = null, FishingRodHook? fRH = null, Player? player = null, int _cameraWidth = 1920, int _cameraHeight = 1080) : base(entity)
         {
