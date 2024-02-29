@@ -93,7 +93,6 @@ namespace FishingRogue
         public Vector2 WorldSpaceToCameraSpace(Vector2 inputVec)
         {
             WorldPosition? playerPosition = null;
-            WorldPosition entityPosition = entity.GetComponent<WorldPosition>();
             CameraPosition? fixedPosition = entity.GetComponent<CameraPosition>();
 
 
