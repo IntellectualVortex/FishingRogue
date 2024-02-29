@@ -76,7 +76,7 @@ namespace FishingRogue
 
         public void PixelDraw()
         {
-            // GLOBAL FISHING STATES?
+            // Access fishing states 
             WorldPosition hookWorldPosition = _fishingRodHook.GetComponent<WorldPosition>();
             Vector2 hookPos = WorldSpaceToCameraSpace(hookWorldPosition.Pos);
             WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
