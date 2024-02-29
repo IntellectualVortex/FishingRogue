@@ -17,7 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FishingRogue\FishingRogue.csproj" />
+    <ProjectReference Include="..\FishingRogue.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FishingRogue">
+      <HintPath>..\bin\Debug\net6.0\FishingRogue.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

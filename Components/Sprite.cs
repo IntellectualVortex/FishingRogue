@@ -74,20 +74,54 @@ namespace FishingRogue
             layerDepth: 0f);
         }
 
-/*        public void PixelDraw()
+        public void PixelDraw()
         {
             // GLOBAL FISHING STATES?
-
-            WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
             WorldPosition hookWorldPosition = _fishingRodHook.GetComponent<WorldPosition>();
-            Vector2 hookStartingPosition = playerPosition.Pos;
+            Vector2 hookPos = WorldSpaceToCameraSpace(hookWorldPosition.Pos);
+            WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
 
-            Vector2 toHook = (hookWorldPosition.Pos - hookStartingPosition);
+
+            Vector2 toHook = (playerPosition.Pos - hookPos);
             float length = toHook.Length();
             float angle = (float)Math.Atan2(toHook.Y, toHook.X);
 
-            Globals.spriteBatch.Draw(Texture, hookWorldPosition.Pos, null, Color.White, angle, new Vector2(0, 0), new Vector2(length, 1), SpriteEffects.None, 0);
-        }*/
+            Globals.spriteBatch.Draw(Texture, hookPos, null, Color.White, angle, new Vector2(0, 0), new Vector2(length, 1), SpriteEffects.None, 0);
+        }
+
+
+        public Vector2 WorldSpaceToCameraSpace(Vector2 inputVec)
+        {
+            WorldPosition? playerPosition = null;
+            WorldPosition entityPosition = entity.GetComponent<WorldPosition>();
+            CameraPosition? fixedPosition = entity.GetComponent<CameraPosition>();
+
+
+            if (_player != null)
+            {
+                playerPosition = _player.GetComponent<WorldPosition>();
+            }
+
+
+            if (fixedPosition == null && playerPosition != null)
+            {
+                var x_1 = inputVec.X - playerPosition.Pos.X + cameraWidth / 2;
+                var y_1 = inputVec.Y - playerPosition.Pos.Y + cameraHeight / 2;
+                return new Vector2((int)x_1, (int)y_1);
+            }
+
+            if (fixedPosition != null)
+            {
+                return new Vector2((int)fixedPosition.Pos.X, (int)fixedPosition.Pos.Y);
+            }
+
+            else
+            {
+                throw new ArgumentException("FIXED POSITION IS NULL!");
+            }
+        }
+
+
 
         public Rectangle WorldSpaceToCameraSpace()
         {
@@ -126,7 +160,7 @@ namespace FishingRogue
 
         public override void PixelUpdate(GameTime gameTime)
         {
-            //PixelDraw();
+            PixelDraw();
         }
     }
 }
