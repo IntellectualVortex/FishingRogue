@@ -21,6 +21,12 @@ namespace FishingRogue
 
         public override void Update(GameTime gameTime)
         {
+            Acceleration acceleration = entity.GetComponent<Acceleration>();
+
+            if (acceleration != null)
+            {
+                Vel += acceleration.Accel;
+            }
         }
     }
 }

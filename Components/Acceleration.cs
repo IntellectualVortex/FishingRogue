@@ -5,8 +5,8 @@ namespace FishingRogue
 {
     public class Acceleration : Component
     {
-        public float Accel { get; set; } = 9.8f;
-        public Acceleration(Entity entity, float acceleration) : base(entity)
+        public Vector2 Accel { get; set; }
+        public Acceleration(Entity entity, Vector2 acceleration) : base(entity)
         {
             Accel = acceleration;
         }

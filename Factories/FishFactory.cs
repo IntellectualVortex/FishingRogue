@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +7,18 @@ using System.Threading.Tasks;
 
 namespace FishingRogue.Factories
 {
-    public class FishFactory
+    public class FishFactory : Entity
     {
         Player _player;
-        public FishFactory(Player player) 
+        Fish _fish;
+        public FishFactory(Entity entity, Player player, Fish fish)
         {
             _player = player;
-        }
+            _fish = fish;
 
-        public Fish CreateFish(string name) 
-        {
-            return new Fish(_player);
             // Need to create fish entity and attach components as well dynamically
+            WorldPosition worldPosition = new WorldPosition(this);
+            _fish.AddComponent(worldPosition);
         }
-
     }
 }
