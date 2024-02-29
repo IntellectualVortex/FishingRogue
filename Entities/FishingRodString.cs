@@ -5,7 +5,14 @@ namespace FishingRogue
 {
     public class FishingRodString : Entity
     {
-
+        public Vector2 offset = new Vector2(120, 20);
+        public Vector2 initialPosition
+        {
+            get
+            {
+                return new Vector2(Globals.gDM.PreferredBackBufferWidth / 2, Globals.gDM.PreferredBackBufferHeight / 2) + offset;
+            }
+        }
         public FishingRodString(Player player, FishingRodHook fishingRodHook)
         {
             Sprite sprite = new Sprite(
@@ -13,16 +20,14 @@ namespace FishingRogue
                 player: player,
                 fRH: fishingRodHook,
                 texture: Globals.content.Load<Texture2D>("PlayerAssets\\greenpixel5"),
-                width: 5,
-                height: 5);
+                width: 1,
+                height: 1);
 
             Velocity velocity = new Velocity(this);
-            WorldPosition position = new WorldPosition(this);
-            Move move = new Move(this);
+            CameraPosition position = new CameraPosition(this, initialPosition);
 
-            AddComponent(position);
             AddComponent(velocity);
-            AddComponent(move);
+            AddComponent(position);
             AddComponent(sprite);
         }
     }

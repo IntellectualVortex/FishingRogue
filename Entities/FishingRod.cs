@@ -5,7 +5,14 @@ namespace FishingRogue
 {
     class FishingRod : Entity
     {
-        Vector2 initialPosition = new Vector2(120, 40);
+        public Vector2 offset = new Vector2(120, 20);
+        public Vector2 initialPosition
+        {
+            get
+            {
+                return new Vector2(Globals.gDM.PreferredBackBufferWidth / 2, Globals.gDM.PreferredBackBufferHeight / 2) + offset;
+            }
+        }
 
         public FishingRod(Player player)
         {
@@ -17,12 +24,10 @@ namespace FishingRogue
                 height: 128);
 
             Velocity velocity = new Velocity(this);
-            WorldPosition position = new WorldPosition(this, initialPosition);
-            Move move = new Move(this);
+            CameraPosition position = new CameraPosition(this, initialPosition);
 
-            AddComponent(position);
             AddComponent(velocity);
-            AddComponent(move);
+            AddComponent(position);
             AddComponent(sprite);
         }
     }

@@ -63,7 +63,23 @@ namespace FishingRogue
 
         public void ScaleDraw()
         {
-            var rectangle = WorldSpaceToCameraSpace();
+            WorldPosition? entityWorldPosition = entity.GetComponent<WorldPosition>();
+            CameraPosition? entityCameraPosition = entity.GetComponent<CameraPosition>();
+            Vector2 topleft;
+            if (entityWorldPosition != null)
+            {
+                topleft = WorldSpaceToCameraSpace(entityWorldPosition.Pos);
+            }
+            else if (entityCameraPosition != null)
+            {
+                topleft = new Vector2((int)entityCameraPosition.Pos.X, (int)entityCameraPosition.Pos.Y);
+            }
+            else
+            {
+                throw new ArgumentException("Camera position and world position are both NULL!");
+            }
+
+            Rectangle rectangle = new Rectangle((int)topleft.X, (int)topleft.Y, Width, Height);
             Globals.spriteBatch.Draw(texture: Texture,
             destinationRectangle: rectangle,
             sourceRectangle: null,
@@ -76,80 +92,44 @@ namespace FishingRogue
 
         public void PixelDraw()
         {
-            // Access fishing states 
+
             WorldPosition hookWorldPosition = _fishingRodHook.GetComponent<WorldPosition>();
-            Vector2 hookPos = WorldSpaceToCameraSpace(hookWorldPosition.Pos);
-            WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
+            if (hookWorldPosition != null)
+            {
+                WorldPosition playerPosition = _player.GetComponent<WorldPosition>();
 
 
-            Vector2 toHook = (playerPosition.Pos - hookPos);
-            float length = toHook.Length();
-            float angle = (float)Math.Atan2(toHook.Y, toHook.X);
+                Vector2 toHook = (hookWorldPosition.Pos - playerPosition.Pos) - new Vector2(80, 25);
+                float length = toHook.Length();
+                float angle = (float)Math.Atan2(toHook.Y, toHook.X);
 
-            Globals.spriteBatch.Draw(Texture, hookPos, null, Color.White, angle, new Vector2(0, 0), new Vector2(length, 1), SpriteEffects.None, 0);
+                Globals.spriteBatch.Draw(
+                    texture: Texture,
+                    position: _fishingRodHook.initialPosition,
+                    sourceRectangle: null,
+                    color: Color.White,
+                    rotation: angle,
+                    origin: new Vector2(0, 0),
+                    scale: new Vector2(length / 5, 1),
+                    effects: SpriteEffects.None,
+                    layerDepth: 0
+                );
+            }
         }
 
 
-        public Vector2 WorldSpaceToCameraSpace(Vector2 inputVec)
+        public Vector2 WorldSpaceToCameraSpace(Vector2 vector)
         {
-            WorldPosition? playerPosition = null;
-            CameraPosition? fixedPosition = entity.GetComponent<CameraPosition>();
-
-
-            if (_player != null)
+            WorldPosition? worldPosition = _player == null ? null : _player.GetComponent<WorldPosition>();
+            if (worldPosition == null)
             {
-                playerPosition = _player.GetComponent<WorldPosition>();
+                throw new ArgumentException("Forgot to give Player a WorldPosition!!");
             }
-
-
-            if (fixedPosition == null && playerPosition != null)
-            {
-                var x_1 = inputVec.X - playerPosition.Pos.X + cameraWidth / 2;
-                var y_1 = inputVec.Y - playerPosition.Pos.Y + cameraHeight / 2;
-                return new Vector2((int)x_1, (int)y_1);
-            }
-
-            if (fixedPosition != null)
-            {
-                return new Vector2((int)fixedPosition.Pos.X, (int)fixedPosition.Pos.Y);
-            }
-
-            else
-            {
-                throw new ArgumentException("FIXED POSITION IS NULL!");
-            }
+            var x_1 = vector.X - worldPosition.Pos.X + cameraWidth / 2;
+            var y_1 = vector.Y - worldPosition.Pos.Y + cameraHeight / 2;
+            return new Vector2((int)x_1, (int)y_1);
         }
 
-
-
-        public Rectangle WorldSpaceToCameraSpace()
-        {
-            WorldPosition? playerPosition = null;
-            WorldPosition entityPosition = entity.GetComponent<WorldPosition>();
-            CameraPosition? fixedPosition = entity.GetComponent<CameraPosition>();
-
-
-            if (_player != null)
-            {
-                playerPosition = _player.GetComponent<WorldPosition>();
-            }
-
-
-            if (fixedPosition == null && playerPosition != null)
-            {
-                var x_1 = entityPosition.Pos.X - playerPosition.Pos.X + cameraWidth / 2;
-                var y_1 = entityPosition.Pos.Y - playerPosition.Pos.Y + cameraHeight / 2;
-                return new Rectangle((int)x_1, (int)y_1, Width, Height);
-            }
-            if (fixedPosition != null)
-            {
-                return new Rectangle((int)fixedPosition.Pos.X, (int)fixedPosition.Pos.Y, Width, Height);
-            }
-            else
-            {
-                throw new ArgumentException("FIXED POSITION IS NULL!");
-            }
-        }
 
 
         public override void Update(GameTime gameTime)

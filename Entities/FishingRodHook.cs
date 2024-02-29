@@ -5,7 +5,14 @@ namespace FishingRogue
 {
     public class FishingRodHook : Entity
     {
-        public Vector2 initialPosition = new Vector2(Globals.gDM.PreferredBackBufferWidth / 2 + 120, Globals.gDM.PreferredBackBufferHeight / 2 + 20);
+        public Vector2 offset = new Vector2(120, 20);
+        public Vector2 initialPosition
+        {
+            get
+            {
+                return new Vector2(Globals.gDM.PreferredBackBufferWidth / 2, Globals.gDM.PreferredBackBufferHeight / 2) + offset;
+            }
+        }
 
         public FishingRodHook(Player player)
         {
@@ -21,11 +28,11 @@ namespace FishingRogue
             CameraPosition cameraPosition = new CameraPosition(this, initialPosition);
 
             // Offset for initial cast added
-            WorldPosition worldPosition = new WorldPosition(this, new Vector2(120, 20));
+
             CastFishingRod fishingAction = new CastFishingRod(entity: this, player: player);
 
 
-            AddComponent(worldPosition);
+
             AddComponent(cameraPosition);
 
             AddComponent(velocity);

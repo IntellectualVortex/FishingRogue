@@ -43,9 +43,6 @@ namespace FishingRogue
         public override void Update(GameTime gameTime)
         {
             MouseState currentMouseState = Mouse.GetState();
-
-            CameraPosition hookCameraPosition = entity.GetComponent<CameraPosition>();
-            WorldPosition hookWorldPosition = entity.GetComponent<WorldPosition>();
             Velocity hookVelocity = entity.GetComponent<Velocity>();
             WorldPosition playerWorldPosition = _player.GetComponent<WorldPosition>();
 
@@ -55,7 +52,7 @@ namespace FishingRogue
                 case FishingState.Ready:
                     if (currentMouseState.LeftButton == ButtonState.Pressed && _oldMouseState.LeftButton == ButtonState.Released)
                     {
-                        
+
                         fishingState = FishingState.Charging;
                         chargingSince = (float)gameTime.TotalGameTime.TotalSeconds;
                     }
@@ -68,8 +65,10 @@ namespace FishingRogue
                     {
                         _power = ((float)gameTime.TotalGameTime.TotalSeconds - chargingSince) * _powerCoefficient + _minPower;
                         fishingState = FishingState.Casted;
-                        _cameraPosition = hookCameraPosition;
-                        entity.ReplaceComponent(hookCameraPosition, hookWorldPosition);
+
+                        WorldPosition worldPositionCasted = new WorldPosition(entity, new Vector2(playerWorldPosition.Pos.X, playerWorldPosition.Pos.Y) + ((FishingRodHook)entity).offset);
+                        _cameraPosition = entity.GetComponent<CameraPosition>();
+                        entity.ReplaceComponent(_cameraPosition, worldPositionCasted);
 
                         if (_power > _maxPower)
                         {
@@ -103,17 +102,19 @@ namespace FishingRogue
 
                 case FishingState.Returning:
 
+                    WorldPosition worldPositionReturning = entity.GetComponent<WorldPosition>();
+
                     // Offset added for hook to return to rod position
-                    Vector2 direction = ((playerWorldPosition.Pos + new Vector2(120, 20)) - hookWorldPosition.Pos);
+                    Vector2 direction = ((playerWorldPosition.Pos + ((FishingRodHook)entity).offset) - worldPositionReturning.Pos);
                     direction.Normalize();
                     hookVelocity.Vel = direction * _returningSpeed;
 
 
                     // Offset added for hook to return to rod position
-                    if (Vector2.Distance(hookWorldPosition.Pos, playerWorldPosition.Pos + new Vector2(120, 20)) < _playerReach)
+                    if (Vector2.Distance(worldPositionReturning.Pos, playerWorldPosition.Pos + ((FishingRodHook)entity).offset) < _playerReach)
                     {
-
-                        entity.ReplaceComponent(hookWorldPosition, _cameraPosition);
+                        CameraPosition cameraPosition = new CameraPosition(entity, ((FishingRodHook)entity).initialPosition);
+                        entity.ReplaceComponent(worldPositionReturning, _cameraPosition);
                         fishingState = FishingState.Ready;
                         _power = 0f;
                         hookVelocity.Vel = new Vector2(0, 0);
@@ -121,8 +122,11 @@ namespace FishingRogue
                     break;
             }
 
+            WorldPosition worldPositionDebug = entity.GetComponent<WorldPosition>();
 
-            Debug.WriteLine("hook world pos: " + hookWorldPosition.Pos);
+
+
+            Debug.WriteLine("hook world pos: " + ((worldPositionDebug == null) ? "it's null" : worldPositionDebug.Pos.ToString()));
             Debug.WriteLine("player world pos: " + playerWorldPosition.Pos.ToString());
             Debug.WriteLine("Fishing State: " + fishingState);
             _oldMouseState = currentMouseState;

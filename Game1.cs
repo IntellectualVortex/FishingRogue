@@ -8,6 +8,7 @@ namespace FishingRogue
     {
         World1 world;
         UpdateSystem updateSystem;
+        //SpriteUpdateSystem spriteUpdateSystem;
         public Texture2D pixel;
 
         public Game1()
@@ -37,6 +38,7 @@ namespace FishingRogue
             Globals.fishermanTexture = Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman");
             world = new World1();
             updateSystem = new UpdateSystem(world);
+            //spriteUpdateSystem = new SpriteUpdateSystem(world);
         }
 
         public void TestLoadContent()
@@ -53,6 +55,7 @@ namespace FishingRogue
 
             Globals.spriteBatch.Begin(SpriteSortMode.Deferred, blendState: BlendState.AlphaBlend, null);
             updateSystem.Update(gameTime);
+            //spriteUpdateSystem.Update(gameTime);
             Globals.spriteBatch.End();
         }
 
