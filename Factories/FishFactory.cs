@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FishingRogue.Factories
+namespace FishingRogue
 {
     public class FishFactory : Entity
     {

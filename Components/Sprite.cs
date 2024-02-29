@@ -74,7 +74,7 @@ namespace FishingRogue
             layerDepth: 0f);
         }
 
-        public void PixelDraw()
+/*        public void PixelDraw()
         {
             // GLOBAL FISHING STATES?
 
@@ -87,7 +87,7 @@ namespace FishingRogue
             float angle = (float)Math.Atan2(toHook.Y, toHook.X);
 
             Globals.spriteBatch.Draw(Texture, hookWorldPosition.Pos, null, Color.White, angle, new Vector2(0, 0), new Vector2(length, 1), SpriteEffects.None, 0);
-        }
+        }*/
 
         public Rectangle WorldSpaceToCameraSpace()
         {
@@ -126,7 +126,7 @@ namespace FishingRogue
 
         public override void PixelUpdate(GameTime gameTime)
         {
-            PixelDraw();
+            //PixelDraw();
         }
     }
 }
