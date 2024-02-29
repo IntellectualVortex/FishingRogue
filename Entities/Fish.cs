@@ -8,16 +8,6 @@ namespace FishingRogue
     {
         public Fish(Player player) 
         {
-
-            Sprite sprite = new Sprite(
-            entity: this,
-            player: player,
-            texture: Globals.content.Load<Texture2D>("PlayerAssets\\Fisherman"));
-
-            WorldPosition worldPosition = new WorldPosition(this);
-
-            AddComponent(worldPosition);
-            AddComponent(sprite);
         }
     }
 }
