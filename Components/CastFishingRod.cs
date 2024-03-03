@@ -1,11 +1,6 @@
-﻿using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework;
-using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
-using System.Security.AccessControl;
-using System.Runtime.InteropServices;
-using System.Collections;
-using System;
 
 namespace FishingRogue
 {

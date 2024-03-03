@@ -14,8 +14,8 @@ namespace FishingRogue
             Player player = new Player();
             FishingRodHook fishingRodHook = new FishingRodHook(player);
             pixelEntities.Add(new FishingRodString(player, fishingRodHook));
-            entities.Add(player);
             entities.Add(new Map(player));
+            entities.Add(player);
             entities.Add(new Pond(player));
             entities.Add(new FishingRod(player));
             entities.Add(fishingRodHook);
